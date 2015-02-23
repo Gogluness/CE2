@@ -261,8 +261,6 @@ a#scrollUp i{
 }
 
 .search-box-btn{
-  background: none repeat scroll 0% 0% #F0F0E9;
-  border: medium none;
   height: 35px;
   outline: medium none;
   border-radius: 0px;
