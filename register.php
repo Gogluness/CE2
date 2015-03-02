@@ -181,7 +181,7 @@ include('registerbackend.php'); // Includes Login Script
 		        </div>
                 <div class="col_1_of_2 span_1_of_2">
                 	<input type="text" class="text" value="Nom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nom';}" name="nom">
-                /div>
+                </div>
                 <div class="clear"> </div>
 		   </div>
 		   <div class="lable-2">
