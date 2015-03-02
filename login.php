@@ -1,5 +1,9 @@
 <?php
-include('registerbackend.php'); // Includes Login Script
+include('loginbackend.php'); // Includes Login Script
+
+if(isset($_SESSION['login_user'])){
+header("location: profile.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -173,27 +177,14 @@ include('registerbackend.php'); // Includes Login Script
 		</div>
 		<div class="clear"> </div>	
       </div>
-      <h2>S'enregistrer</h2>
-		<form action="register.php" method="post">
-		   <div class="lable">
-		        <div class="col_1_of_2 span_1_of_2">	
-		        	<input type="text" class="text" value="Prenom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Prenom';}" id="active" name="prenom">
-		        </div>
-                <div class="col_1_of_2 span_1_of_2">
-                	<input type="text" class="text" value="Nom" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nom';}" name="nom">
-                /div>
-                <div class="clear"> </div>
-		   </div>
+      <h2>S'identifier</h2>
+		<form>
 		   <div class="lable-2">
-		        <input name="email" type="text" class="text" value="votre@email.com " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'votre@email.com ';}" name="email">
-		        <input name="password" type="password" class="text" value="Mot de passe " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mot de passe ';}" name="password">
-		        <input name="confirmPassword" type="password" class="text" value="Mot de passe " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mot de passe ';}" name="confirmPassword">
-		   </div>
-		   <div class="col-md-12">
-		   <h3>En vous enregistrant, vous acceptez nos <span class="term"><a href="#">Termes & Conditions</a></span></h3>
+		        <input name="username" type="text" class="text" value="votre@email.com " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'votre@email.com ';}">
+		        <input name="password" type="password" class="text" value="Mot de passe " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mot de passe ';}">
 		   </div>
 		   <div class="submit">
-			  <input type="submit" value="Enregistrer" >
+			  <input type="submit" name="submit" value="Identifier" >
 		   </div>
 		   <div class="clear"> </div>
 		</form>
@@ -375,3 +366,4 @@ include('registerbackend.php'); // Includes Login Script
     <script src="js/main.js"></script>
 </body>
 </html>
+

@@ -1,3 +1,10 @@
+<?php
+include('login.php'); // Includes Login Script
+
+if(isset($_SESSION['login_user'])){
+header("location: profile.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,11 +180,11 @@
       <h2>S'identifier</h2>
 		<form>
 		   <div class="lable-2">
-		        <input type="text" class="text" value="votre@email.com " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'votre@email.com ';}">
-		        <input type="password" class="text" value="Mot de passe " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mot de passe ';}">
+		        <input name="username" type="text" class="text" value="votre@email.com " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'votre@email.com ';}">
+		        <input name="password" type="password" class="text" value="Mot de passe " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mot de passe ';}">
 		   </div>
 		   <div class="submit">
-			  <input type="submit" onclick="login.php" value="Identifier" >
+			  <input type="submit" name="submit" value="Identifier" >
 		   </div>
 		   <div class="clear"> </div>
 		</form>
