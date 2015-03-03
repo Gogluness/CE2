@@ -2569,3 +2569,11 @@ h2.title {
 .logo{
 	font-size: 23px;
 }
+
+.nav > li > a:focus{
+	background-color: #172431;
+}
+
+#companyDesc p{
+	font-weight:300;
+}

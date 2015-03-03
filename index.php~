@@ -1,0 +1,20 @@
+<?php include "header.php"?>
+
+	
+	<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="jumbotron">
+				  <h1>Présentation de l'entreprise</h1>
+				  <p><?php include "presentationEntreprise.txt"?></p>
+				</div>
+				<div id="companyDesc" class="col-sm-6 col-sm-push-3">
+					
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+	
+<?php include "products-list.php"?>
+
+<?php include "footer.php"?>
