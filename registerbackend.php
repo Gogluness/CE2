@@ -45,9 +45,9 @@
                 $password = mysql_real_escape_string($password);
                 $confirmPassword = mysql_real_escape_string($confirmPassword);
                 // Selecting Database
-                $db = mysql_select_db("CE2");
+                $db = mysql_select_db("CE2", $connection);
                 // SQL query to fetch information of registerd users and finds user match.
-                $query = mysql_query("INSERT INTO Users (Prenom, Nom, Username, Password) VALUES ('$prenom', '$nom', '$email', '$password');", $connection);
+                $query = mysql_query("INSERT INTO Users (Prenom, Nom, Username, Password) VALUES ('$prenom', '$nom', '$email', '$password')", $connection);
                 $query = mysql_query("select * from Users where Password='$password' AND Username='$username'", $connection);
                 $rows = mysql_num_rows($query);
                 if ($rows == 1) 
@@ -64,3 +64,4 @@
     }
     echo($error);
 ?>
+
