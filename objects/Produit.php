@@ -1,15 +1,15 @@
 <?php
 class Produit
 {
-	$CUP
-	$Description
-	$ID
-	$modele
-	$ImgPath
-	$Nom
-	$NomCompagnie
-	$PrixCout
-	$PrixVente
-	$Quantite
+	public $CUP;
+	public $Description;
+	public $ID;
+	public $modele;
+	public $ImgPath;
+	public $Nom;
+	public $NomCompagnie;
+	public $PrixCout;
+	public $PrixVente;
+	public $Quantite;
 }
 ?>
