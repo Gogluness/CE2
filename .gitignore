@@ -1,8 +1,10 @@
-# Fichiers temporaires #
-########################
+Fichiers temporaires
+
+###################
 *~
 
-# Compiled source #
+Compiled source
+
 ###################
 *.com
 *.class
@@ -10,11 +12,11 @@
 *.exe
 *.o
 *.so
- 
-# Packages #
+
 ############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
+it's better to unpack these files and commit the raw source
+git has its own built in compression methods
+
 *.7z
 *.dmg
 *.gz
@@ -25,17 +27,19 @@
 *.zip
  
 # Logs and databases #
+=======
 ######################
 *.log
 *.sql
 *.sqlite
  
 # OS generated files #
+=======
+OS generated files
+
 ######################
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
-Thumbs.db 
