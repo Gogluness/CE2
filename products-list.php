@@ -3,23 +3,23 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Catégorie</h2>
+						<h2>Catégories</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#deltas">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Deltas
+											Delta
 										</a>
 									</h4>
 								</div>
 								<div id="deltas" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="">Deltas 9' </a></li>
-											<li><a href="">Deltas 11' </a></li>
-											<li><a href="">Deltas 19' </a></li>
+											<li><a href="">Delta 9' </a></li>
+											<li><a href="">Delta 11' </a></li>
+											<li><a href="">Delta 19' </a></li>
 											<li><a href="">Tous les Deltas </a></li>
 										</ul>
 									</div>
@@ -27,18 +27,18 @@
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">acrobatiques</a></h4>
+									<h4 class="panel-title"><a href="#">acrobatique</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">De collections</a></h4>
+									<h4 class="panel-title"><a href="#">De collection</a></h4>
 								</div>
 							</div>
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Vire-vent</a></h4>
+									<h4 class="panel-title"><a href="#">Méga</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
@@ -56,9 +56,6 @@
 									<li><a href=""> <span class="pull-right">(56)</span>R-SKY</a></li>
 									<li><a href=""> <span class="pull-right">(27)</span>Level ONE</a></li>
 									<li><a href=""> <span class="pull-right">(32)</span>Prism</a></li>
-									<li><a href=""> <span class="pull-right">(5)</span>Dakine</a></li>
-									<li><a href=""> <span class="pull-right">(9)</span>Avia Sport</a></li>
-									<li><a href=""> <span class="pull-right">(4)</span>Shyshark</a></li>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -93,12 +90,6 @@
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
 								</div>
 							</div>
 						</div>
