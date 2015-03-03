@@ -34,28 +34,6 @@
 			$query .= ")"
 		}
 
-		protected function PREVENT_BAD_INJECTION(string ...$Variables)
-		{
-			$i = 0;
-			$tmp
-			foreach($Variables ad $variable)
-			{
-				$tmp[$i] = stripslashes($variable);
-				$tmp[$i] = mysql_real_escape_string($tmp[Si]);
-			}
-			return $tmp;
-		}
-
-		function PREVENT_BAD_INJECTION(string $Variables)
-		{
-			$tmp
-				$tmp = stripslashes($variable);
-				$tmp = mysql_real_escape_string($tmp);
-			}
-			return $tmp;
-		}
-
-
 		function SELECT_WHERE_CLAUSE($table, $WhereInput, array $Variables)
 		{
 			//$WhereInput est un tableau de clees valeurs
@@ -99,5 +77,29 @@
 
 			$query = PREVENT_BAD_INJECTION($query);
 		}
+
+		protected function PREVENT_BAD_INJECTION(string ...$Variables)
+		{
+			$i = 0;
+			$tmp
+			foreach($Variables ad $variable)
+			{
+				$tmp[$i] = stripslashes($variable);
+				$tmp[$i] = mysql_real_escape_string($tmp[Si]);
+			}
+			return $tmp;
+		}
+
+		function PREVENT_BAD_INJECTION(string $Variables)
+		{
+			$tmp
+				$tmp = stripslashes($variable);
+				$tmp = mysql_real_escape_string($tmp);
+			}
+			return $tmp;
+		}
+
+
+
 	}
 ?>
