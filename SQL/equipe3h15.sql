@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10.1
+-- version 4.2.6deb1
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 03 Mars 2015 à 11:39
--- Version du serveur :  5.5.40-0ubuntu0.14.04.1
--- Version de PHP :  5.5.9-1ubuntu4.4
+-- Généré le :  Mar 03 Mars 2015 à 15:38
+-- Version du serveur :  5.5.41-0ubuntu0.14.10.1
+-- Version de PHP :  5.5.12-2ubuntu4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `equipe3h15`
+-- Base de données :  `CE2`
 --
 
 -- --------------------------------------------------------
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `Modele` (
   `Cordes` text,
   `Poids` text,
   `NomModele` text
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Contenu de la table `Modele`
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `Produit` (
   `PrixCout` double DEFAULT NULL,
   `Quantite` int(4) NOT NULL DEFAULT '10',
   `NomCompagnie` varchar(100) DEFAULT 'Premier Kites'
-) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=163 ;
 
 --
 -- Contenu de la table `Produit`
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `Produit` (
 
 INSERT INTO `Produit` (`CUP`, `IDModele`, `ID`, `Nom`, `Description`, `ImgPath`, `PrixVente`, `PrixCout`, `Quantite`, `NomCompagnie`) VALUES
 (NULL, 29, 1, 'Amazing', NULL, 'LevelOne/acrobatique/kites_01.jpg', 135, NULL, 10, 'Level One'),
-(NULL, NULL, 10, 'Neon Patchwork', NULL, 'PremierKites/collection/deltas11/neon_patchwork.jpg', 140, NULL, 10, 'Premier Kites'),
+(NULL, 29, 10, 'Neon Patchwork', NULL, 'PremierKites/collection/deltas11/neon_patchwork.jpg', 140, NULL, 10, 'Premier Kites'),
 (NULL, 29, 30, 'Easy', NULL, 'LevelOne/acrobatique/kites_03.jpg', 135, NULL, 10, 'Level One'),
 (NULL, 29, 31, 'Reloaded', NULL, 'LevelOne/acrobatique/kites_05.jpg', 175, NULL, 10, 'Level One'),
 (NULL, 29, 32, 'Reloaded', NULL, 'LevelOne/acrobatique/kites_06.jpg', 175, NULL, 10, 'Level One'),
@@ -223,12 +223,12 @@ INSERT INTO `Produit` (`CUP`, `IDModele`, `ID`, `Nom`, `Description`, `ImgPath`,
 (NULL, 32, 68, 'Krystal - lw', NULL, 'R-Sky/acrobatique/Krystal_lw.jpg', 530, NULL, 10, 'R-Sky'),
 (NULL, 33, 69, 'Delta', 'Depuis longtemps R-SKY parcoure les festivals avec ses Deltas.\r\n\r\nCe sont les cerfs-volants monofils qui acceptent la plus grande plage de vent, le montage est ultra simple et rapide.\r\nIls dominent souvent le haut des festivals, laissant flotter au vent leurs 15 m de traine arrière.\r\n\r\n3 m d''envergure et du carbone de 8 mm offrent au Delta R-SKY une grande solidité. Installés seuls ou en arche, par une présence colorée et le doux frémissement de la voile, ils occupent fièrement le ciel.', 'R-Sky/monofils/delta.jpg', 405, NULL, 10, 'R-Sky'),
 (NULL, 4, 70, 'Avenger - Fierce', NULL, 'PremierKites/acrobatique/avenger/fierce.jpg', 115, NULL, 10, 'Premier Kites'),
-(NULL, 4, 71, 'Avenger - Rainbow', NULL, 'PremierKites/acrobatique/rainbow/fierce.jpg', 105, NULL, 10, 'Premier Kites'),
+(NULL, 4, 71, 'Avenger - Rainbow', NULL, 'PremierKites/acrobatique/avenger/rainbow.jpg', 105, NULL, 10, 'Premier Kites'),
 (NULL, 4, 72, 'Avenger - Tempest', NULL, 'PremierKites/acrobatique/avenger/tempest.jpg', 105, NULL, 10, 'Premier Kites'),
 (NULL, 7, 73, 'Barracuda 1.3 - Rainbow', NULL, 'PremierKites/acrobatique/barracuda_1_3/rainbow.jpg', 50, NULL, 10, 'Premier Kites'),
 (NULL, 7, 74, 'Barracuda 1.3 - Tecmo', NULL, 'PremierKites/acrobatique/barracuda_1_3/tecmo.jpg', 50, NULL, 10, 'Premier Kites'),
 (NULL, 7, 75, 'Barracuda 1.3 - Tie Dye', NULL, 'PremierKites/acrobatique/barracuda_1_3/tie_dye.jpg', 50, NULL, 10, 'Premier Kites'),
-(NULL, 8, 76, 'Barracuda 1.7 - Rainbow', NULL, 'PremierKites/acrobatique/barracuda_1_7/raibow.jpg', 75, NULL, 10, 'Premier Kites'),
+(NULL, 8, 76, 'Barracuda 1.7 - Rainbow', NULL, 'PremierKites/acrobatique/barracuda_1_7/rainbow.jpg', 75, NULL, 10, 'Premier Kites'),
 (NULL, 8, 77, 'Barracuda 1.7 - Tecmo', NULL, 'PremierKites/acrobatique/barracuda_1_7/tecmo.jpg', 75, NULL, 10, 'Premier Kites'),
 (NULL, 8, 78, 'Barracuda 1.7 - Tie Dye', NULL, 'PremierKites/acrobatique/barracuda_1_7/tie_dye.jpg', 75, NULL, 10, 'Premier Kites'),
 (NULL, 2, 79, 'Osprey - Fire Raptor', NULL, 'PremierKites/acrobatique/osprey/fire_raptor.jpg', 40, NULL, 10, 'Premier Kites'),
@@ -271,7 +271,7 @@ INSERT INTO `Produit` (`CUP`, `IDModele`, `ID`, `Nom`, `Description`, `ImgPath`,
 (NULL, 9, 116, 'Yellow Chevron', NULL, 'PremierKites/collection/deltas9/yellow_chevron.jpg', 70, NULL, 10, 'Premier Kites'),
 (NULL, 10, 117, 'B/W Peace', NULL, 'PremierKites/collection/deltas11/BW_peace.jpg', 140, NULL, 10, 'Premier Kites'),
 (NULL, 10, 118, 'Cool Fountain', NULL, 'PremierKites/collection/deltas11/cool_fountain.jpg', 140, NULL, 10, 'Premier Kites'),
-(NULL, 10, 119, 'Groovy Peace', NULL, 'PremierKites/collection/deltas11/groovy_neon.jpg', 140, NULL, 10, 'Premier Kites'),
+(NULL, 10, 119, 'Groovy Peace', NULL, 'PremierKites/collection/deltas11/groovy_peace.jpg', 140, NULL, 10, 'Premier Kites'),
 (NULL, 10, 121, 'Optic Checkers', NULL, 'PremierKites/collection/deltas11/optic_checkers.jpg', 140, NULL, 10, 'Premier Kites'),
 (NULL, 10, 122, 'Patriotic', NULL, 'PremierKites/collection/deltas11/patriotic.jpg', 140, NULL, 10, 'Premier Kites'),
 (NULL, 10, 123, 'Rainbow Fountain', NULL, 'PremierKites/collection/deltas11/rainbow_fountain.jpg', 140, NULL, 10, 'Premier Kites'),
@@ -288,12 +288,12 @@ INSERT INTO `Produit` (`CUP`, `IDModele`, `ID`, `Nom`, `Description`, `ImgPath`,
 (NULL, 11, 134, 'Tekna Brite', NULL, 'PremierKites/collection/deltas19/tekna_brite.jpg', 580, NULL, 10, 'Premier Kites'),
 (NULL, 11, 135, 'Teknacolor', NULL, 'PremierKites/collection/deltas19/teknacolor.jpg', 580, NULL, 10, 'Premier Kites'),
 (NULL, 11, 136, 'Rb Waterfall', NULL, 'PremierKites/collection/deltas19/rainbow_waterfall.jpg', 580, NULL, 10, 'Premier Kites'),
-(NULL, 12, 137, 'Flo-Tail - Rainbow', NULL, 'PremierKites/collection/flo_tail_6_5/rainbow.jpg', 80, NULL, 10, 'Premier Kites'),
-(NULL, 12, 138, 'Flo-Tail - Orbit', NULL, 'PremierKites/collection/flo_tail_6_5/orbit.jpg', 80, NULL, 10, 'Premier Kites'),
-(NULL, 12, 139, 'Flo-Tail - Warm', NULL, 'PremierKites/collection/flo_tail_6_5/warm.jpg', 80, NULL, 10, 'Premier Kites'),
-(NULL, 13, 140, 'RB Arch', NULL, 'PremierKites/collection/flo_tail_13/rb_arch.jpg', 210, NULL, 10, 'Premier Kites'),
-(NULL, 13, 141, 'Rainbow Burst', NULL, 'PremierKites/collection/flo_tail_13/rainbow_burst.jpg', 210, NULL, 10, 'Premier Kites'),
-(NULL, 13, 142, 'Red Op Art', NULL, 'PremierKites/collection/flo_tail_13/red_op_art.jpg', 210, NULL, 10, 'Premier Kites'),
+(NULL, 12, 137, 'Flo-Tail - Rainbow', NULL, 'PremierKites/collection/flo-tail_6_5/rainbow.jpg', 80, NULL, 10, 'Premier Kites'),
+(NULL, 12, 138, 'Flo-Tail - Orbit', NULL, 'PremierKites/collection/flo-tail_6_5/orbit.jpg', 80, NULL, 10, 'Premier Kites'),
+(NULL, 12, 139, 'Flo-Tail - Warm', NULL, 'PremierKites/collection/flo-tail_6_5/warm.jpg', 80, NULL, 10, 'Premier Kites'),
+(NULL, 13, 140, 'RB Arch', NULL, 'PremierKites/collection/flo-tail_13/rb_arch.jpg', 210, NULL, 10, 'Premier Kites'),
+(NULL, 13, 141, 'Rainbow Burst', NULL, 'PremierKites/collection/flo-tail_13/rainbow_burst.jpg', 210, NULL, 10, 'Premier Kites'),
+(NULL, 13, 142, 'Red Op Art', NULL, 'PremierKites/collection/flo-tail_13/red_op_art.jpg', 210, NULL, 10, 'Premier Kites'),
 (NULL, 19, 143, 'Anguille Géante', NULL, 'PremierKites/collection/mega_kite/giant_eel.jpg', 1890, NULL, 3, 'Premier Kites'),
 (NULL, 20, 144, 'Dragon Rouge Géant', NULL, 'PremierKites/collection/mega_kite/red_dragon.jpg', 1575, NULL, 10, 'Premier Kites'),
 (NULL, 21, 145, 'Ange', NULL, 'PremierKites/collection/mega_kite/angel.jpg', 136, NULL, 10, 'Premier Kites'),
