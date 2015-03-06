@@ -14,11 +14,13 @@
 		$produit->Nom = $val["Nom"];
 		$produit->PrixVente = $val["PrixVente"];
 		$produit->ImgPath = $val["ImgPath"];
+		$produit->ID = $val["ID"];
 
 		array_push($tableauProduits, $produit);
 	}
 
 	mysql_close();
+session_unset();
 ?>
 <section>
 	<div class="container">
@@ -104,10 +106,9 @@
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<img src="images/CerfVolantImages/" alt="" />
 									<?php
 										echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
-									?>
+									?>						
 									<h2>
 										<?php echo $produit->PrixVente;?>$
 									</h2>
@@ -126,9 +127,12 @@
 										<p>
 											<?php echo $produit->Nom;?>
 										</p>
-										<a href="#" class="btn btn-default add-to-cart">
+										<a class="btn btn-default add-to-cart">
 											<i class="fa fa-shopping-cart"></i>Ajouter au panier
 										</a>
+										<input type="hidden" class="ID-produit"
+											<?php echo "value='".$produit->ID."'" ?>
+										/>
 									</div>
 								</div>
 							</div>

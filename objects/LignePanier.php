@@ -1,9 +1,11 @@
 <?php
 class LignePanier
 {
-	$ID
-	$produits
-	$NoPanier
-	$Qte
+	public $ID;
+	public $NoPanier;
+	public $ImgPath;
+	public $Nom;
+	public $Qte;
+	public $Prix;
 }
 ?>
