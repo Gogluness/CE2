@@ -41,7 +41,7 @@ session_start();
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.php">Le gîte du cerf-volant, Bonjour <?php $_SESSION['login_user'] ?></a>
+							<a href="index.php">Le gîte du cerf-volant, Bonjour <?php echo($_SESSION['login_user']); ?></a>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -51,6 +51,14 @@ session_start();
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Panier</a></li>
 								<li><a href="register.php"><i class="fa fa-pencil"></i> Inscription</a></li>
 								<li><a href="login.php"><i class="fa fa-lock"></i> Connexion</a></li>
+								<?php
+								if(isset($_SESSION['login_user']))
+								{
+									?>
+								<li><a href="logout.php"><i class="fa fa-lock"></i> Deonnexion</a></li>
+								<?php
+								}
+								?>
 							</ul>
 						</div>
 					</div>
