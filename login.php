@@ -2,9 +2,9 @@
 session_start();
 if(isset($_SESSION['login_user']))
 {
-	   header('Location: ' . 'profile.php', true, $statusCode);
-	   die();
-	}
+   header('Location: ' . 'profile.php', true, $statusCode);
+   die();
+}	
 include "header.php" // Includes Login Script
 ?>
 
@@ -56,50 +56,39 @@ include "header.php" // Includes Login Script
 	else
 	{
 		?>
+		<section>
+		<div class="container outer-panel">
+			<div class="col-md-10 col-md-offset-1 login-panel">
+			<div class="col-md-8 col-md-offset-2 inner-panel">
+				<div class="col-md-12">
+					<h3>Identification</h3>
+				</div>
 
-<section class="body-section">
-<div class="main">
-<div class="inner-main">
-	<div class="social-icons">
-		 <div class="col_1_of_f span_1_of_f"><a href="#">
-		    <ul class='facebook'>
-		    	<i class="fb"> </i>
-		    	<li>Avec Facebook</li>
-		    	<div class='clear'> </div>
-		    </ul>
-		    </a>
-		 </div>	
-		 <div class="col_1_of_f span_1_of_f"><a href="#">
-		    <ul class='twitter'>
-		      <i class="tw"> </i>
-		      <li>Avec Twitter</li>
-		      <div class='clear'> </div>
-		    </ul>
-		    </a>
-		</div>
-		<div class="clear"> </div>	
-      </div>
-      <h2>S'identifier</h2>
-		<form action="login.php" method="POST">
-		   <div class="lable-2">
-		        <input name="username" type="text" class="text" value="votre@email.com " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'votre@email.com ';}">
-		        <input name="password" type="password" class="text" value="Mot de passe " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mot de passe ';}">
-		   </div>
-		   <div class="submit">
-			  <input type="submit" name="submit" value="Identifier" >
-		   </div>
-		   <div class="clear"> </div>
-		</form>
-		<!-----//end-inner-main---->
-		</div>
-		<!-----//end-main---->
-		</div>
-		 <!-----start-copyright---->
-   		<div class="copy-right">
-			<p>Template by <a href="http://w3layouts.com">w3layouts</a></p> 
-		</div>
-				<!-----//end-copyright---->
-</section>
+				<div class="col-md-12">
+				<div class="col-md-6">
+					<input type="text" name="prenom" class="col-md-12 login-input">
+				</div>
+				<div class="col-md-6">
+					<input type="text" name="nom" class="col-md-12 login-input">
+				</div>
+				</div>
+
+				<div class="col-md-12">
+					<input type="email" name="email" class="col-md-12 login-input">
+				</div>
+
+				<div class="col-md-12">
+					<input type="password" name="password" class="col-md-12 login-input">
+					<input type="password" name="confirmPassword" class="col-md-12 login-input">
+				</div>
+
+				<div class="col-md-12">
+					<input type="submit" name="submit" value="Identifier" class="login-submit col-md-12">
+				</div>
+			</div>
+			</div>
+			</div>
+			</section>
 		<?php
 	}
 ?>
