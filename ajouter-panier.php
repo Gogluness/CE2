@@ -8,6 +8,9 @@ if(isset($_SESSION['panier']))
 	$objetPanier = $_SESSION['panier']."&".$objetPanier;
 }
 
+$objetPanier = trim($objetPanier, "&");
 $_SESSION['panier'] = $objetPanier;
 
 ?>
+
+

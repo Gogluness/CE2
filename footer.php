@@ -19,6 +19,7 @@
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
     <script src="js/ajouter-panier.js"></script>
+    <script src="js/retirer-panier.js"></script>
     <script src="js/panier.js"></script>
 </body>
 </html>

@@ -1725,6 +1725,12 @@ h2.title {
   padding: 7px 20px;
 }
 
+.total_area .final-total{
+   color: #3A5C83;
+   font-weight: 700;
+   font-size: 16px;
+}
+
 
 .user_option label {
   color: #696763;

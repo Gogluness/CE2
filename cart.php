@@ -1,31 +1,37 @@
 <?php include "header.php"?>
 
 <?php
-	include "objects/LignePanier.php";
-	mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
-	mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
+	if(isset($_SESSION['panier']))
+	{
+		include "objects/LignePanier.php";
+		mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
+		mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
-	$listIDProduits = $_SESSION['panier'];
-	$panier = array();
-	$tableauIDProduits = explode("&",$listIDProduits);
+		$listIDProduits = $_SESSION['panier'];
+		$panier = array();
+		$tableauIDProduits = explode("&",$listIDProduits);
 
-	foreach ($tableauIDProduits as $idProduitCourrant){
+		foreach ($tableauIDProduits as $idProduitCourrant){
 
-		$queryGetProduit = "SELECT * FROM Produit WHERE ID =$idProduitCourrant;";
-		$executionRequeteProduit = mysql_query($queryGetProduit);
-		$produitRetour = mysql_fetch_array($executionRequeteProduit);
+			if($idProduitCourrant != null || $idProduitCourrant != "")
+			{
+				$queryGetProduit = "SELECT * FROM Produit WHERE ID =$idProduitCourrant;";
+				$executionRequeteProduit = mysql_query($queryGetProduit);
+				$produitRetour = mysql_fetch_array($executionRequeteProduit);
 
-		$lignePanier = new LignePanier();
-		$lignePanier->Nom = $produitRetour["Nom"];
-		$lignePanier->Prix = $produitRetour["PrixVente"];
-		$lignePanier->ImgPath = $produitRetour["ImgPath"];
-		$lignePanier->ID = $produitRetour["ID"];
-		$lignePanier->Qte = 1;
+				$lignePanier = new LignePanier();
+				$lignePanier->Nom = $produitRetour["Nom"];
+				$lignePanier->Prix = $produitRetour["PrixVente"];
+				$lignePanier->ImgPath = $produitRetour["ImgPath"];
+				$lignePanier->ID = $produitRetour["ID"];
+				$lignePanier->Qte = 1;
 
-		array_push($panier, $lignePanier);
+				array_push($panier, $lignePanier);
+			}
+		}
+
+		mysql_close();
 	}
-
-	mysql_close();
 ?>
 
 <section id="cart_items">
@@ -79,16 +85,16 @@
 									<a class="cart_quantity_down" href=""> - </a>
 								</div>
 							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">59$</p>
+							<td class="cart_total col-md-2">
+								<p class="cart_total_price"><?php echo $ligne->Prix;?>$</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" href="" data-ObjectID="<?php echo $ligne->ID;?>">
+									<i class="fa fa-times"></i>
+								</a>
 							</td>
 						</tr>
 					<?php } ?><!--Fin foreach-->
-
-						
 						<tr>
 							<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
 								<div class="modal-content">
@@ -101,8 +107,31 @@
 						</tr>
 					</tbody>
 				</table>
+				
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
+	<section id="do_action">
+		<div class="container">
+			<div class="heading">
+				<h3>Que voulez-vous faire maintenant?</h3>
+				<p>Vous pouvez continuer votre magasinage ou bien procéder au paiement des articles dans votre panier.</p>
+			</div>
+				<div class="col-sm-6 col-sm-offset-6">
+					<div class="total_area">
+						<ul>
+							<li>Total panier <span>$59</span></li>
+							<li>Taxes <span>$2</span></li>
+							<li>Expédition <span>Gratuite</span></li>
+							<li>Total <span class="final-total">$61</span></li>
+						</ul>
+							<a class="btn btn-default check_out pull-right" href="">Payer</a>
+							<a class="btn btn-default update pull-right" href="shop.php">Continuer le magasinage</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/#do_action-->
+
 
 <?php include "footer.php"?>
