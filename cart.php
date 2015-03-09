@@ -10,6 +10,7 @@
 		$listIDProduits = $_SESSION['panier'];
 		$panier = array();
 		$tableauIDProduits = explode("&",$listIDProduits);
+		$prixTotal = 0;
 
 		foreach ($tableauIDProduits as $idProduitCourrant){
 
@@ -31,6 +32,7 @@
 		}
 
 		mysql_close();
+
 	}
 ?>
 
@@ -75,7 +77,10 @@
 							</td>
 							<td class="cart_price">
 								<p>
-									<?php echo $ligne->Prix;?>$
+									<?php 
+										echo $ligne->Prix;
+										$prixTotal = $prixTotal + $ligne->Prix;
+									?>$
 								</p>
 							</td>
 							<td class="cart_quantity">
@@ -120,18 +125,33 @@
 				<div class="col-sm-6 col-sm-offset-6">
 					<div class="total_area">
 						<ul>
-							<li>Total panier <span>$59</span></li>
-							<li>Taxes <span>$2</span></li>
+							<li>Total panier <span id="total-cart"><?php echo $prixTotal; ?>$</span></li>
+							<li>Taxes 
+								<span id="cart-taxes">
+									<?php 
+										$taxes = $prixTotal * 0.14975; 
+										echo number_format((float)$taxes, 2, '.', ''); 
+									?>$
+								</span>
+							</li>
 							<li>Expédition <span>Gratuite</span></li>
-							<li>Total <span class="final-total">$61</span></li>
+							<li>Total 
+								<span id="cart-final-total">
+									<?php 
+										$prixTotalFinal = $prixTotal + $taxes;
+										$prixTotalFinal = number_format((float)$prixTotalFinal, 2, '.', '');
+										echo $prixTotalFinal; 
+									?>
+								$</span>
+							</li>
 						</ul>
-							<a class="btn btn-default check_out pull-right" href="">Payer</a>
+							<a id="btn-payer-paypal" class="btn btn-default check_out pull-right" href="">Payer avec Paypal</a>
 							<a class="btn btn-default update pull-right" href="shop.php">Continuer le magasinage</a>
+							<?php include "payer-paypal.php"; ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section><!--/#do_action-->
-
 
 <?php include "footer.php"?>

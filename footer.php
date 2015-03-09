@@ -3,7 +3,7 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2015 Le gîte du cerf-volant, Tous droits réservés.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://invoinn.com/">InvoInn</a></span></p>
+					<p class="pull-right">Créé par Vincent D'amour et Vincent Bernier</p>
 				</div>
 			</div>
 		</div>

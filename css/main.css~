@@ -1726,7 +1726,9 @@ h2.title {
 }
 
 .total_area .final-total{
-
+   color: #3A5C83;
+   font-weight: 700;
+   font-size: 16px;
 }
 
 
