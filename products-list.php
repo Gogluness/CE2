@@ -132,6 +132,7 @@
 										<?php
 											echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
 										?>						
+
 										<h2>
 											<?php echo $produit->PrixVente;?>$
 										</h2>

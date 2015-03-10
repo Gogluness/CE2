@@ -117,9 +117,10 @@
 					<?php 
 						if($nbpage == 0)
 						{
+<<<<<<< HEAD
 							echo "<h4 class='no-result'>Aucun résultat trouvé!</h4>";
 						}
-						else
+						else //<!--Début else-->
 						{
 							include "shop-pagination.php";
 							foreach ($tableauProduits as $produit)
@@ -132,6 +133,29 @@
 										<?php
 											echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
 										?>						
+=======
+					?> <!--Debut foreach-->
+					<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<?php
+										echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
+									?>
+									?>						
+									<h2>
+										<?php echo $produit->PrixVente;?>$
+									</h2>
+									<p>
+										<?php echo $produit->Nom;?>
+									</p>
+									<a href="#" class="btn btn-default add-to-cart">
+										<i class="fa fa-shopping-cart"></i>Ajouter au panier
+									</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+>>>>>>> master
 										<h2>
 											<?php echo $produit->PrixVente;?>$
 										</h2>
