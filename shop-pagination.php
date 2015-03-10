@@ -16,7 +16,7 @@
 
 			echo "<li class='active'><a>$pageCourante</a></li>";
 
-			if($pageCourante != $nbpage)
+			if($pageCourante != $nbpage && $nbpage != 0)
 			{
 				echo "<li><a href='shop.php?recherche=$objetRechercher&page=$noPageSuiv'>$noPageSuiv</a></li>";
 			}

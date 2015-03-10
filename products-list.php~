@@ -114,50 +114,58 @@
 			<div class="col-sm-9 padding-right">
 				<div class="features_items"><!--features_items-->
 					<h2 class="title text-center">Liste des produits</h2>
-										<?php include "shop-pagination.php"; ?>
-					<?php
-						foreach ($tableauProduits as $produit)
+					<?php 
+						if($nbpage == 0)
 						{
-					?> <!--Debut foreach-->
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<?php
-										echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
-									?>						
-									<h2>
-										<?php echo $produit->PrixVente;?>$
-									</h2>
-									<p>
-										<?php echo $produit->Nom;?>
-									</p>
-									<a href="#" class="btn btn-default add-to-cart">
-										<i class="fa fa-shopping-cart"></i>Ajouter au panier
-									</a>
-								</div>
-								<div class="product-overlay">
-									<div class="overlay-content">
+							echo "<h4 class='no-result'>Aucun résultat trouvé!</h4>";
+						}
+						else
+						{
+							include "shop-pagination.php";
+							foreach ($tableauProduits as $produit)
+							{
+						?> <!--Debut foreach-->
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<?php
+											echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
+										?>						
 										<h2>
 											<?php echo $produit->PrixVente;?>$
 										</h2>
 										<p>
 											<?php echo $produit->Nom;?>
 										</p>
-										<a class="btn btn-default add-to-cart">
+										<a href="#" class="btn btn-default add-to-cart">
 											<i class="fa fa-shopping-cart"></i>Ajouter au panier
 										</a>
-										<input type="hidden" class="ID-produit"
-											<?php echo "value='".$produit->ID."'" ?>
-										/>
+									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>
+												<?php echo $produit->PrixVente;?>$
+											</h2>
+											<p>
+												<?php echo $produit->Nom;?>
+											</p>
+											<a class="btn btn-default add-to-cart">
+												<i class="fa fa-shopping-cart"></i>Ajouter au panier
+											</a>
+											<input type="hidden" class="ID-produit"
+												<?php echo "value='".$produit->ID."'" ?>
+											/>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<?php } ?><!--Fin foreach-->
-					<?php include "shop-pagination.php"; ?>
+						<?php } //<!--Fin foreach-->
+						 include "shop-pagination.php"; 
+						}
+						?><!--Fin else-->
 				</div><!--features_items-->
 			</div>
 		</div>
