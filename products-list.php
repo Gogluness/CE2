@@ -6,6 +6,7 @@
 	$pageCourante = @$_GET["page"];
 	$objetRechercher=@$_GET["recherche"];
 	$marque = @$_GET["marque"];
+	$categorie = @$_GET["categorie"];
 
 	if($pageCourante == null)
 	{
@@ -62,33 +63,42 @@
 							<div id="deltas" class="panel-collapse collapse">
 								<div class="panel-body">
 									<ul>
-										<li><a href="">Delta 9' </a></li>
-										<li><a href="">Delta 11' </a></li>
-										<li><a href="">Delta 19' </a></li>
-										<li><a href="">Tous les Deltas </a></li>
+										<li>
+											<a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&categorie=deltas&nbsp9">Delta 9' </a>
+										</li>
+										<li>
+											<a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&categorie=deltas&nbsp11">Delta 11' </a>
+										</li>
+										<li>
+											<a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&categorie=deltas&nbsp19">Delta 19' </a>
+										</li>
+										<li>
+											<a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&categorie=delta">Tous les Deltas </a>
+										</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title"><a href="#">acrobatique</a></h4>
+								<h4 class="panel-title">
+									<a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&categorie=acrobatique">acrobatique</a>
+								</h4>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title"><a href="#">De collection</a></h4>
+								<h4 class="panel-title">
+									<a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&categorie=collection">De collection</a>
+								</h4>
 							</div>
 						</div>
 						
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title"><a href="#">Méga</a></h4>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title"><a href="#">Article de décoration</a></h4>
+								<h4 class="panel-title">
+									<a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&categorie=mega">Méga</a>
+								</h4>
 							</div>
 						</div>
 					</div><!--/category-productsr-->
