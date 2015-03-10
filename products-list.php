@@ -5,6 +5,7 @@
 
 	$pageCourante = @$_GET["page"];
 	$objetRechercher=@$_GET["recherche"];
+	$marque = @$_GET["marque"];
 
 	if($pageCourante == null)
 	{
@@ -12,7 +13,8 @@
 	}
 
 	/*va cherche le nombre de page de produits*/
-	$requeteNbObjets = "SELECT count(*) FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%')";
+	$requeteNbObjets = "SELECT count(*) FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%') 
+		AND NomCompagnie LIKE '%{$marque}%'";
 	$ResultatNbObjet = mysql_query($requeteNbObjets);
 	$val = mysql_fetch_row($ResultatNbObjet);
  	$nbObjetParPage	= $val[0];
@@ -20,7 +22,8 @@
 
 	/*va remplir un tableau de produit avec les éléments de recherche*/
 	$positionPremierObjet = ($pageCourante - 1) * 12;
-	$queryAffichageProduit = "SELECT * FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%') LIMIT $positionPremierObjet,12";
+	$queryAffichageProduit = "SELECT * FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%') 
+		AND NomCompagnie LIKE '%{$marque}%' LIMIT $positionPremierObjet,12";
 	$resultatRequeteProduit = mysql_query($queryAffichageProduit);
 
 	$tableauProduits = array();
@@ -35,6 +38,8 @@
 
 		array_push($tableauProduits, $produit);
 	}
+
+	include "nb-of-kites-by-compagnie.php";
 
 	mysql_close();
 ?>
@@ -92,10 +97,18 @@
 						<h2>Marques</h2>
 						<div class="brands-name">
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href=""> <span class="pull-right">(50)</span>Premier Kites</a></li>
-								<li><a href=""> <span class="pull-right">(56)</span>R-SKY</a></li>
-								<li><a href=""> <span class="pull-right">(27)</span>Level ONE</a></li>
-								<li><a href=""> <span class="pull-right">(32)</span>Prism</a></li>
+								<li><a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&marque=Premier&nbspKites"> 
+									<span class="pull-right"><?php echo $nbOfKitesForPremierKites ?></span>Premier Kites
+								</a></li>
+								<li><a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&marque=Level&nbspOne"> 
+									<span class="pull-right"><?php echo $nbOfKitesForLevelOne ?></span>Level ONE
+								</a></li>
+								<li><a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&marque=R-Sky"> 
+									<span class="pull-right"><?php echo $nbOfKitesForRSky ?></span>R-SKY
+								</a></li>
+								<li><a href="shop.php?recherche=<?php echo $objetRechercher; ?>&page=1&marque=Prism"> 
+									<span class="pull-right"><?php echo $nbOfKitesForPrism ?></span>Prism
+								</a></li>
 							</ul>
 						</div>
 					</div><!--/brands_products-->
