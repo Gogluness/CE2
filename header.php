@@ -22,6 +22,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+    <?php session_start(); ?>
 </head><!--/head-->
 
 <body>
@@ -39,7 +41,7 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href=""><i class="fa fa-user"></i> Compte</a></li>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Panier</a></li>
+								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Panier</a></li>
 								<li><a href="login.html"><i class="fa fa-pencil"></i> Inscription</a></li>
 								<li><a href="login.html"><i class="fa fa-lock"></i> Connexion</a></li>
 							</ul>

@@ -14,6 +14,7 @@
 		$produit->Nom = $val["Nom"];
 		$produit->PrixVente = $val["PrixVente"];
 		$produit->ImgPath = $val["ImgPath"];
+		$produit->ID = $val["ID"];
 
 		array_push($tableauProduits, $produit);
 	}
@@ -106,7 +107,7 @@
 								<div class="productinfo text-center">
 									<?php
 										echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
-									?>
+									?>						
 									<h2>
 										<?php echo $produit->PrixVente;?>$
 									</h2>
@@ -125,9 +126,12 @@
 										<p>
 											<?php echo $produit->Nom;?>
 										</p>
-										<a href="#" class="btn btn-default add-to-cart">
+										<a class="btn btn-default add-to-cart">
 											<i class="fa fa-shopping-cart"></i>Ajouter au panier
 										</a>
+										<input type="hidden" class="ID-produit"
+											<?php echo "value='".$produit->ID."'" ?>
+										/>
 									</div>
 								</div>
 							</div>
