@@ -1,4 +1,7 @@
 <?php
+
+	class DAO
+	{
 		const $database ="CE2";
 		const $servername ="localhost";
 		const $dbuser = "root";
@@ -99,5 +102,5 @@
 
 
 
-	
+	/*}*/
 ?>

@@ -31,5 +31,10 @@
             mysqli_close($conn);
 
     echo($error);
+<<<<<<< HEAD
     echo(include "footer.php");
 ?>
+=======
+?>
+
+>>>>>>> master

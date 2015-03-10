@@ -261,6 +261,8 @@ a#scrollUp i{
 }
 
 .search-box-btn{
+  background: none repeat scroll 0% 0% #F0F0E9;
+  border: medium none;
   height: 35px;
   outline: medium none;
   border-radius: 0px;
@@ -1560,7 +1562,7 @@ h2.title {
   border-color:transparent transparent transparent #3A5C83;
   position: absolute;
   top: 11px;
-  left:48px;
+  left:55px;
 
 }
 
@@ -1671,13 +1673,14 @@ h2.title {
 
 .cart_delete a {
   background:#F0F0E9;
-  color: #FFFFFF;
+  color: #3A5C83;
   padding: 5px 7px;
   font-size: 16px
 }
 
 .cart_delete a:hover {
-  background:#3A5C83
+  background:#3A5C83;
+  color:#FFFFFF;
 }
 
 
@@ -1720,6 +1723,12 @@ h2.title {
   color: #696763;
   margin-top: 10px;
   padding: 7px 20px;
+}
+
+.total_area .final-total{
+   color: #3A5C83;
+   font-weight: 700;
+   font-size: 16px;
 }
 
 
@@ -2566,4 +2575,16 @@ h2.title {
 
 .logo{
 	font-size: 23px;
+}
+
+.nav > li > a:focus{
+	background-color: #172431;
+}
+
+#companyDesc p{
+	font-weight:300;
+}
+
+.cart_product img{
+   width:8em;
 }
