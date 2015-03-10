@@ -1,11 +1,10 @@
+<?php include "header.php" // Includes Login Script ?>
 <?php
-session_start();
 if(isset($_SESSION['login_user']))
 {
    header('Location: ' . 'profile.php', true, $statusCode);
    die();
 }	
-include "header.php" // Includes Login Script
 ?>
 
 <?php

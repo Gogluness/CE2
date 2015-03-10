@@ -1105,6 +1105,10 @@ h2.title {
   width: 100%;
 }
 
+.page-div{
+   text-align:center;
+}
+
 .pagination {
   display: inline-block;
   margin-bottom: 25px;
@@ -1725,7 +1729,7 @@ h2.title {
   padding: 7px 20px;
 }
 
-.total_area .final-total{
+.total_area #cart-final-total{
    color: #3A5C83;
    font-weight: 700;
    font-size: 16px;
@@ -2587,4 +2591,13 @@ h2.title {
 
 .cart_product img{
    width:8em;
+}
+
+.no-result{
+   color: #696763;
+   font-family: "Roboto",sans-serif;
+   font-weight: 700;
+   margin: 0px 15px 30px;
+   text-transform: uppercase;
+   text-align:center;
 }
