@@ -1,6 +1,9 @@
 <?php include "header.php"?>
 
 <?php
+	$panier = array();
+	$prixTotal = 0;
+
 	if(isset($_SESSION['panier']))
 	{
 		include "objects/LignePanier.php";
@@ -8,9 +11,7 @@
 		mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
 		$listIDProduits = $_SESSION['panier'];
-		$panier = array();
 		$tableauIDProduits = explode("&",$listIDProduits);
-		$prixTotal = 0;
 
 		foreach ($tableauIDProduits as $idProduitCourrant){
 

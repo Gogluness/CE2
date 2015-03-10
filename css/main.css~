@@ -1725,7 +1725,7 @@ h2.title {
   padding: 7px 20px;
 }
 
-.total_area .final-total{
+.total_area #cart-final-total{
    color: #3A5C83;
    font-weight: 700;
    font-size: 16px;

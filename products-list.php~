@@ -3,10 +3,27 @@
 	mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
 	mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
-	$tableauProduits = array();
+	$pageCourante = @$_GET["page"];
+	$objetRechercher=@$_GET["recherche"];
 
-	$queryAffichageProduit = "SELECT * FROM Produit;";
+	if($pageCourante == null)
+	{
+		$pageCourante = 1;
+	}
+
+	/*va cherche le nombre de page de produits*/
+	$requeteNbObjets = "SELECT count(*) FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%')";
+	$ResultatNbObjet = mysql_query($requeteNbObjets);
+	$val = mysql_fetch_row($ResultatNbObjet);
+ 	$nbObjetParPage	= $val[0];
+	$nbpage=ceil($nbObjetParPage/12);
+
+	/*va remplir un tableau de produit avec les éléments de recherche*/
+	$positionPremierObjet = ($pageCourante - 1) * 12;
+	$queryAffichageProduit = "SELECT * FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%') LIMIT $positionPremierObjet,12";
 	$resultatRequeteProduit = mysql_query($queryAffichageProduit);
+
+	$tableauProduits = array();
 
 	while ($val = mysql_fetch_array($resultatRequeteProduit))
 	{
@@ -20,7 +37,6 @@
 	}
 
 	mysql_close();
-session_unset();
 ?>
 <section>
 	<div class="container">
@@ -97,7 +113,8 @@ session_unset();
 			
 			<div class="col-sm-9 padding-right">
 				<div class="features_items"><!--features_items-->
-					<h2 class="title text-center">Features Items</h2>
+					<h2 class="title text-center">Liste des produits</h2>
+										<?php include "shop-pagination.php"; ?>
 					<?php
 						foreach ($tableauProduits as $produit)
 						{
@@ -140,13 +157,7 @@ session_unset();
 					</div>
 
 					<?php } ?><!--Fin foreach-->
-											
-					<ul class="pagination">
-						<li class="active"><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">&raquo;</a></li>
-					</ul>
+					<?php include "shop-pagination.php"; ?>
 				</div><!--features_items-->
 			</div>
 		</div>

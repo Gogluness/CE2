@@ -85,7 +85,7 @@
 					<div class="col-sm-3 pull-right">
 						<div class="search_box">
 							<form method="post" action="search.php">
-								<input type="text" placeholder="Recherche" class="col-sm-10"/>
+								<input name="recherche" type="text" placeholder="Recherche" class="col-sm-10"/>
 								<button type="submit" class="btn btn-default search-box-btn">
 									<span class="glyphicon glyphicon-search"></span>
 								</button>
