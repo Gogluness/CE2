@@ -2591,6 +2591,10 @@ h2.title {
 .outer-panel
 {
   margin-bottom:3em;
+}
+
+.background-panel
+{
     background-color:#D3D3D3;
 }
 
@@ -2651,7 +2655,7 @@ h2.title {
       background: rgba(240,240,240,1);
 }
 
-.login-submit
+.big-buttons
 { 
     padding:5px 4px;
   text-align: center;
@@ -2671,9 +2675,10 @@ padding: 17px 30px;
   outline:none;
   width: 100%;
   -webkit-appearance: none;
+  margin:0.5em 0;
 }
 
-.login-submit:hover
+.big-buttons:hover
 {
      background:#07793D;
    border:1px solid #07793D;
