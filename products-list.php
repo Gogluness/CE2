@@ -3,10 +3,27 @@
 	mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
 	mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
-	$tableauProduits = array();
+	$pageCourante = @$_GET["page"];
+	$objetRechercher=@$_GET["recherche"];
 
-	$queryAffichageProduit = "SELECT * FROM Produit;";
+	if($pageCourante == null)
+	{
+		$pageCourante = 1;
+	}
+
+	/*va cherche le nombre de page de produits*/
+	$requeteNbObjets = "SELECT count(*) FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%')";
+	$ResultatNbObjet = mysql_query($requeteNbObjets);
+	$val = mysql_fetch_row($ResultatNbObjet);
+ 	$nbObjetParPage	= $val[0];
+	$nbpage=ceil($nbObjetParPage/12);
+
+	/*va remplir un tableau de produit avec les éléments de recherche*/
+	$positionPremierObjet = ($pageCourante - 1) * 12;
+	$queryAffichageProduit = "SELECT * FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%') LIMIT $positionPremierObjet,12";
 	$resultatRequeteProduit = mysql_query($queryAffichageProduit);
+
+	$tableauProduits = array();
 
 	while ($val = mysql_fetch_array($resultatRequeteProduit))
 	{
@@ -14,6 +31,7 @@
 		$produit->Nom = $val["Nom"];
 		$produit->PrixVente = $val["PrixVente"];
 		$produit->ImgPath = $val["ImgPath"];
+		$produit->ID = $val["ID"];
 
 		array_push($tableauProduits, $produit);
 	}
@@ -95,30 +113,25 @@
 			
 			<div class="col-sm-9 padding-right">
 				<div class="features_items"><!--features_items-->
-					<h2 class="title text-center">Features Items</h2>
-					<?php
-						foreach ($tableauProduits as $produit)
+					<h2 class="title text-center">Liste des produits</h2>
+					<?php 
+						if($nbpage == 0)
 						{
-					?> <!--Debut foreach-->
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<?php
-										echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
-									?>
-									<h2>
-										<?php echo $produit->PrixVente;?>$
-									</h2>
-									<p>
-										<?php echo $produit->Nom;?>
-									</p>
-									<a href="#" class="btn btn-default add-to-cart">
-										<i class="fa fa-shopping-cart"></i>Ajouter au panier
-									</a>
-								</div>
-								<div class="product-overlay">
-									<div class="overlay-content">
+							echo "<h4 class='no-result'>Aucun résultat trouvé!</h4>";
+						}
+						else //<!--Début else-->
+						{
+							include "shop-pagination.php";
+							foreach ($tableauProduits as $produit)
+							{
+						?> <!--Debut foreach-->
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<?php
+											echo "<img src='images/CerfVolantImages/".$produit->ImgPath."' alt='' />"
+										?>						
 										<h2>
 											<?php echo $produit->PrixVente;?>$
 										</h2>
@@ -129,19 +142,30 @@
 											<i class="fa fa-shopping-cart"></i>Ajouter au panier
 										</a>
 									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>
+												<?php echo $produit->PrixVente;?>$
+											</h2>
+											<p>
+												<?php echo $produit->Nom;?>
+											</p>
+											<a class="btn btn-default add-to-cart">
+												<i class="fa fa-shopping-cart"></i>Ajouter au panier
+											</a>
+											<input type="hidden" class="ID-produit"
+												<?php echo "value='".$produit->ID."'" ?>
+											/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<?php } ?><!--Fin foreach-->
-											
-					<ul class="pagination">
-						<li class="active"><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">&raquo;</a></li>
-					</ul>
+						<?php } //<!--Fin foreach-->
+						 include "shop-pagination.php"; 
+						}
+						?><!--Fin else-->
 				</div><!--features_items-->
 			</div>
 		</div>
