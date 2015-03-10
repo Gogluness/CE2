@@ -35,7 +35,7 @@ session_start();
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.php">Le gîte du cerf-volant, Bonjour <?php echo($_SESSION['login_user']); ?></a>
+							<a href="index.php">Le gîte du cerf-volant <?php echo($_SESSION['login_user']); ?></a>
 						</div>
 					</div>
 					<div class="col-sm-8">
