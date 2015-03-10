@@ -13,11 +13,11 @@ include "header.php" // Includes Login Script
 	if (isset($_POST['submit'])) {
 		if (empty($_POST['email']))
 		{
-			$error = "Nom d'utilisateur vide";
+			$error .= "Email vide \n";
 		}
 		elseif (empty($_POST['password'])) 
 		{
-			$error = "Mot de passe vide";
+			$error .= "Mot de passe vide \n";
 		}
 		else
 		{
@@ -33,7 +33,7 @@ include "header.php" // Includes Login Script
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             // Check connection
             if (!$conn) {
-            	$error="not connecting";
+            	$error.="not connecting\n";
                 die("Connection failed: " . mysqli_connect_error());
             }
 			// Selecting Database
@@ -50,7 +50,7 @@ include "header.php" // Includes Login Script
 			                header('Location: ' . 'profile.php', true, $statusCode);
 			die();
 			} else {
-			    $error = "L'email et le mot de passe ne correspondent pas";
+			    $error .= "L'email et le mot de passe ne correspondent pas \n";
 			}
 		}
 		mysql_close($conn); // Closing Connection

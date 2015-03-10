@@ -12,21 +12,21 @@ if(isset($_SESSION['login_user']))
 if (isset($_POST['submit']))
     {
     $error=''; // Variable To Store Error Message
-    		if (empty($_POST['username']))
+		if (empty($_POST['email']))
 		{
-			$error = "Nom d'utilisateur vide";
+			$error .= "Email vide \n";
 		}
 		elseif (empty($_POST['password'])) 
 		{
-			$error = "Mot de passe vide";
+			$error .= "Mot de passe vide \n";
 		}
 		elseif (empty($_POST['nom'])) 
 		{
-			$error = "Nom vide";
+			$error .= "Nom vide \n";
 		}
 		elseif (empty($_POST['prenom'])) 
 		{
-			$error = "Prenom vide";
+			$error .= "Prenom vide \n";
 		}
 		else{
             $nom = stripslashes($_POST["nom"]);
@@ -64,7 +64,7 @@ if (isset($_POST['submit']))
         }
         else
         {
-        	$error = "les mots de passe ne correspondent pas";
+        	$error .= "les mots de passe ne correspondent pas \n";
         }
     }
     }
