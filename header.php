@@ -42,10 +42,21 @@ session_start();
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
+								<?php
+									if(isset($_COOKIE["nomUsager"]))
+									{
+										echo "<li><a id='header-nom-usager'>Bonjour ".$_COOKIE['nomUsager']."</a></li>";
+									}
+									elseif(isset($_SESSION['login_user']))
+									{
+										echo "<li>Bonjour <a href='profile.php'>".$_SESSION['login_user']."</a></li>";
+									}
+								?>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Panier</a></li>
 								<?php
-								if(isset($_SESSION['login_user']))
-								{ ?>
+									if(isset($_SESSION['login_user']))
+									{ 
+								?>
 								<li><a href="profile.php"><i class="fa fa-user"></i> Compte</a></li>
 								<?php 
 									} 
@@ -54,11 +65,14 @@ session_start();
 								<li><a href="register.php"><i class="fa fa-pencil"></i> Inscription</a></li>
 								<li><a href="login.php"><i class="fa fa-lock"></i> Connexion</a></li>
 								<?php
-								}
-								if(isset($_SESSION['login_user']))
-								{ ?>
-								<li><a href="logout.php"><i class="fa fa-lock"></i> Deonnexion</a></li>
-								<?php } ?>
+									}
+									if(isset($_SESSION['login_user']))
+									{ 
+								?>
+								<li><a href="logout.php"><i class="fa fa-lock"></i> Déconnexion</a></li>
+								<?php 
+									} 
+								?>
 							</ul>
 						</div>
 					</div>
