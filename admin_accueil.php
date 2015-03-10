@@ -1,6 +1,7 @@
 <?php
 include "header.php" // Includes Login Script
 ?>
+
 <div class="outer-panel">
 <div class="container">
 <div class="col-md-10 col-md-offset-1">
@@ -8,8 +9,9 @@ include "header.php" // Includes Login Script
 <script>
     CKEDITOR.replace( 'editor1' );
 </script>
+
 	<div class="col-md-12">
-		<input type="button" name="btnGstUser" value="Gestion d'utilisateurs" class="big-buttons col-md-12">
+		<input type="button" name="btnSave" value="Sauvegarder" class="big-buttons col-md-12">
 	</div>
 </div>
 </div>

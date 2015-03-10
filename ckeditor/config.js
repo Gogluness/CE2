@@ -35,4 +35,8 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	config.extraPlugins = 'autosave';
+
+	config.autosaveTargetUrl = 'http://127.1.0.1/autosave.php';
 };
