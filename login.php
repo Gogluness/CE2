@@ -11,7 +11,7 @@ include "header.php" // Includes Login Script
 <?php
 	$error=''; // Variable To Store Error Message
 	if (isset($_POST['submit'])) {
-		if (empty($_POST['username']))
+		if (empty($_POST['email']))
 		{
 			$error = "Nom d'utilisateur vide";
 		}
@@ -26,14 +26,14 @@ include "header.php" // Includes Login Script
             $password = "admin123";
             $dbname = "CE2";
 			// Define $username and $password
-			$loginuser=$_POST['username'];
-			$loginpassword=$_POST['password'];
+			$loginuser= stripslashes($_POST['email']);
+			$loginpassword=stripslashes($_POST['password']);
 			// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 			// Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             // Check connection
             if (!$conn) {
-            	echo("not connecting");
+            	$error="not connecting";
                 die("Connection failed: " . mysqli_connect_error());
             }
 			// Selecting Database
@@ -47,19 +47,26 @@ include "header.php" // Includes Login Script
 			        echo "user: " . $row["Username"]. " - password: " . $row["Password"]. "<br>";
 			        $_SESSION['login_user'] = $loginuser;
 			    }
+			                header('Location: ' . 'profile.php', true, $statusCode);
+			die();
 			} else {
-			    echo "0 results";
+			    $error = "L'email et le mot de passe ne correspondent pas";
 			}
 		}
 		mysql_close($conn); // Closing Connection
 	}
-	else
-	{
 		?>
 		<section>
 		<div class="container outer-panel">
 			<div class="col-md-10 col-md-offset-1 login-panel">
 			<div class="col-md-10 col-md-offset-2 inner-panel">
+			<form action="login.php" method="POST">
+							<?php if(isset($error) AND !empty($error)) {?>
+				<div class="col-md-12 login-error">
+				<p><?php echo($error); ?><p>
+				</div>
+
+				<?php } ?>
 				<div class="col-md-12">
 					<h3>Identification</h3>
 				</div>
@@ -78,12 +85,10 @@ include "header.php" // Includes Login Script
 				<div class="col-md-12">
 					<input type="submit" name="submit" value="Identifier" class="login-submit col-md-12">
 				</div>
+				</form>
 			</div>
 			</div>
 			</div>
 			</section>
-		<?php
-	}
-?>
 
 <?php include "footer.php"?>

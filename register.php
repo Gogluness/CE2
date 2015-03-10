@@ -8,15 +8,35 @@ if(isset($_SESSION['login_user']))
     include "header.php" // Includes Login Script
 ?>
 <?php
+
 if (isset($_POST['submit']))
     {
     $error=''; // Variable To Store Error Message
+    		if (empty($_POST['username']))
+		{
+			$error = "Nom d'utilisateur vide";
+		}
+		elseif (empty($_POST['password'])) 
+		{
+			$error = "Mot de passe vide";
+		}
+		elseif (empty($_POST['nom'])) 
+		{
+			$error = "Nom vide";
+		}
+		elseif (empty($_POST['prenom'])) 
+		{
+			$error = "Prenom vide";
+		}
+		else{
+            $nom = stripslashes($_POST["nom"]);
+            $prenom = stripslashes($_POST["prenom"]);
+            $loginuser = stripslashes($_POST["email"]);
+            $loginpassword = stripslashes($_POST["password"]);
+            $confirmpassword = stripslashes($_POST["confirmPassword"]);
 
-            $nom = $_POST["nom"];
-            $prenom = $_POST["prenom"];
-            $loginuser = $_POST["email"];
-            $loginpassword = $_POST["password"];
-            $confirmpassword = $_POST["confirmPassword"];
+            if($loginpassword == $confirmpassword)
+            {
 
             $servername = "localhost";
             $username = "root";
@@ -39,16 +59,27 @@ if (isset($_POST['submit']))
             }
 
             mysqli_close($conn);
-
-    echo($error);
-	}
-	else
-	{
+            header('Location: ' . 'profile.php', true, $statusCode);
+			die();
+        }
+        else
+        {
+        	$error = "les mots de passe ne correspondent pas";
+        }
+    }
+    }
 		?>
 		<section>
 		<div class="container outer-panel">
 			<div class="col-md-10 col-md-offset-1 login-panel">
 			<div class="col-md-10 col-md-offset-2 inner-panel">
+			<form action="register.php" method="POST">
+			<?php if(isset($error) AND !empty($error)) {?>
+				<div class="col-md-12 login-error">
+				<p><?php echo($error); ?><p>
+				</div>
+
+				<?php } ?>
 				<div class="col-md-12">
 					<h3>Inscription</h3>
 				</div>
@@ -82,13 +113,11 @@ if (isset($_POST['submit']))
 				<div class="col-md-12">
 					<input type="submit" name="submit" value="Inscrire" class="login-submit col-md-12">
 				</div>
+				</form>
 			</div>
 			</div>
 			</div>
 			</section>
-		<?php
-	}
-?>
 
 <?php include "footer.php" ?>
 

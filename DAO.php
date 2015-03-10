@@ -1,12 +1,10 @@
 <?php
-	class DAO
-	{
 		const $database ="CE2";
 		const $servername ="localhost";
 		const $dbuser = "root";
 		const $dbpassword = "admin123";
 
-		function INSERT_INTO ($table, array $Variables, array $Values)
+		/*function INSERT_INTO ($table, array $Variables, array $Values)
 		{
 			$Variables = PREVENT_BAD_INJECTION($Variables);
 			$Values = PREVENT_BAD_INJECTION($Values);
@@ -76,9 +74,9 @@
 			}
 
 			$query = PREVENT_BAD_INJECTION($query);
-		}
+		}*/
 
-		protected function PREVENT_BAD_INJECTION(string ...$Variables)
+		/*protected function PREVENT_BAD_INJECTION(string &...$Variables)
 		{
 			$i = 0;
 			$tmp
@@ -88,9 +86,9 @@
 				$tmp[$i] = mysql_real_escape_string($tmp[Si]);
 			}
 			return $tmp;
-		}
+		}*/
 
-		function PREVENT_BAD_INJECTION(string $Variables)
+		function PREVENT_BAD_INJECTION($Variables)
 		{
 			$tmp
 				$tmp = stripslashes($variable);
@@ -101,5 +99,5 @@
 
 
 
-	}
+	
 ?>

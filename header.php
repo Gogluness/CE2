@@ -41,18 +41,19 @@ session_start();
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Compte</a></li>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Panier</a></li>
+								<?php
+								if(isset($_SESSION['login_user']))
+								{ ?>
+								<li><a href="profile.php"><i class="fa fa-user"></i> Compte</a></li>
+								<?php } ?>
+								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Panier</a></li>
 								<li><a href="register.php"><i class="fa fa-pencil"></i> Inscription</a></li>
 								<li><a href="login.php"><i class="fa fa-lock"></i> Connexion</a></li>
 								<?php
 								if(isset($_SESSION['login_user']))
-								{
-									?>
+								{ ?>
 								<li><a href="logout.php"><i class="fa fa-lock"></i> Deonnexion</a></li>
-								<?php
-								}
-								?>
+								<?php } ?>
 							</ul>
 						</div>
 					</div>
