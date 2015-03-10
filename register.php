@@ -55,6 +55,8 @@ if (isset($_POST['submit']))
 
             if (mysqli_query($conn, $sql)) {
                 echo "New record created successfully";
+		$expire = 365*24*3600;
+		setcookie("nomUsager",$nom,time()+$expire);
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
