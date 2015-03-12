@@ -1307,6 +1307,12 @@ h2.title {
   margin-left: 20px;
 }
 
+.cart:hover {
+  background-color: #5C7B9D;
+  color: #FFFFFF;
+}
+
+
 
 .shop-details-tab {
   border: 1px solid #F7F7F0;
@@ -2722,4 +2728,8 @@ div.overlay-content{
    height:100%;
    position: absolute;
    top:0px;
+}
+
+.add-to-cart:focus{
+	color:#FFFFFF;
 }
