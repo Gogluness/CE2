@@ -27,7 +27,6 @@ session_start();
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-
 <body>
 	<header id="header"><!--header-->
 
@@ -97,16 +96,11 @@ session_start();
 								<li><a href="index.php" class="active">Accueil</a></li>
 								<li class="dropdown"><a href="shop.php">Produits<i class="fa fa-angle-down"></i></a>
 		                            			<ul role="menu" class="sub-menu">
-		                                			<li><a href="shop.php">Liste des Produits</a></li>
-									<li><a href="product-details.html">Promotions</a></li>  
+		                                			<li><a href="shop.php">Liste des Produits</a></li> 
 									<li><a href="cart.php">Panier</a></li>  
 		                            			</ul>
                                 				</li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-				                    			<ul role="menu" class="sub-menu">
-				                        			<li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-				                    			</ul>
+								<li class="dropdown"><a href="blog.php">Blog</a>
                                 				</li> 						
 							</ul>
 						</div>

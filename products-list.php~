@@ -46,6 +46,8 @@
 		array_push($tableauProduits, $produit);
 	}
 
+	include "nb-of-kites-by-compagnie.php";
+
 	mysql_close();
 ?>
 <section>

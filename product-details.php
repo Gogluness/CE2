@@ -3,7 +3,8 @@
 
 	$IDProduit = @$_GET["id"];
 
-	mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
+	$link = mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
+	mysql_set_charset('utf8',$link);
 	mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
 	$queryObtenirProduit = "SELECT Produit.ID, Produit.Nom, Produit.PrixVente, Produit.ImgPath, Produit.Description, Produit.NomCompagnie, Produit.Quantite, Description,
