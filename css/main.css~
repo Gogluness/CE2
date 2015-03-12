@@ -2704,5 +2704,22 @@ padding: 17px 30px;
 }
 
 #header-nom-usager{
-   
+   color: #333;
+   font-weight: 300;
+}
+
+div.product-overlay{
+   cursor:pointer;
+}
+
+div.overlay-content{
+   cursor:default;
+   z-index:1000;
+}
+
+.test{
+   width:100%;
+   height:100%;
+   position: absolute;
+   top:0px;
 }

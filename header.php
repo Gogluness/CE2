@@ -99,7 +99,7 @@ session_start();
 		                            			<ul role="menu" class="sub-menu">
 		                                			<li><a href="shop.php">Liste des Produits</a></li>
 									<li><a href="product-details.html">Promotions</a></li>  
-									<li><a href="cart.html">Panier</a></li>  
+									<li><a href="cart.php">Panier</a></li>  
 		                            			</ul>
                                 				</li> 
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>

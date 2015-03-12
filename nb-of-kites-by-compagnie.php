@@ -3,6 +3,11 @@
 	$nbOfKitesForRSky;
 	$nbOfKitesForLevelOne;
 	$nbOfKitesForPrism;
+	
+	if(isset($objetRechercher) == false)
+	{
+		$objetRechercher = "";
+	}
 
 	$requeteNbObjetsBase = "SELECT count(*) FROM Produit where (Nom LIKE '%{$objetRechercher}%' or Description LIKE '%{$objetRechercher}%') 
 		AND NomCompagnie LIKE ";
