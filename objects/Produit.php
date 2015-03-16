@@ -11,6 +11,13 @@ class Produit
 	public $PrixCout;
 	public $PrixVente;
 	public $Quantite;
+	public $Grandeur;
+	public $Vent;
+	public $Tissus;
+	public $Armature;
+	public $Emballage;
+	public $Cordes;
+	public $Poids;
 }
 ?>
 
