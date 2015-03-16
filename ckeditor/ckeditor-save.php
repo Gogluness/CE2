@@ -1,10 +1,13 @@
 
 <?php
-$file = 'presentationEntreprise.txt';
+if(isset($_POST['btnSave'])
+{
+$file = fopen("../".$_POST["EditorFile"], 'w');
 // Open the file to get existing content
-$current = file_get_contents($file);
+$current = $_POST["editor1"];
 // Append a new person to the file
-$current .= "John Smith\n";
 // Write the contents back to the file
-file_put_contents($file, $current);
+fwrite($file, $current);
+fclose($file);
+}
 ?>
