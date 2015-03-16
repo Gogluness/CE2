@@ -1,11 +1,12 @@
+<?php 
+	include "header.php" // Includes Login Script
+?>
 <?php
-session_start();
 if(isset($_SESSION['login_user']))
 {
    header('Location: ' . 'profile.php', true, $statusCode);
    die();
 }	
-    include "header.php" // Includes Login Script
 ?>
 <?php
 
@@ -54,6 +55,8 @@ if (isset($_POST['submit']))
 
             if (mysqli_query($conn, $sql)) {
                 echo "New record created successfully";
+		$expire = 365*24*3600;
+		setcookie("nomUsager",$nom,time()+$expire);
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }

@@ -1,4 +1,5 @@
 <?php
+@ob_start();
 session_start();
 ?>
 <!DOCTYPE html>
@@ -26,7 +27,6 @@ session_start();
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <script src="/ckeditor/ckeditor.js"></script>
-    <?php session_start(); ?>
 </head><!--/head-->
 
 <body>
@@ -37,25 +37,43 @@ session_start();
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.php">Le gîte du cerf-volant <?php echo($_SESSION['login_user']); ?></a>
+							<a href="index.php">Le gîte du cerf-volant</a>
 						</div>
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<?php
-								if(isset($_SESSION['login_user']))
-								{ ?>
-								<li><a href="profile.php"><i class="fa fa-user"></i> Compte</a></li>
-								<?php } ?>
+									if(isset($_COOKIE["nomUsager"]))
+									{
+										echo "<li><a id='header-nom-usager'>Bonjour ".$_COOKIE['nomUsager']."</a></li>";
+									}
+									elseif(isset($_SESSION['login_user']))
+									{
+										echo "<li>Bonjour <a href='profile.php'>".$_SESSION['login_user']."</a></li>";
+									}
+								?>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Panier</a></li>
+								<?php
+									if(isset($_SESSION['login_user']))
+									{ 
+								?>
+								<li><a href="profile.php"><i class="fa fa-user"></i> Compte</a></li>
+								<?php 
+									} 
+									else {
+								?>
 								<li><a href="register.php"><i class="fa fa-pencil"></i> Inscription</a></li>
 								<li><a href="login.php"><i class="fa fa-lock"></i> Connexion</a></li>
 								<?php
-								if(isset($_SESSION['login_user']))
-								{ ?>
-								<li><a href="logout.php"><i class="fa fa-lock"></i> Deonnexion</a></li>
-								<?php } ?>
+									}
+									if(isset($_SESSION['login_user']))
+									{ 
+								?>
+								<li><a href="logout.php"><i class="fa fa-lock"></i> Déconnexion</a></li>
+								<?php 
+									} 
+								?>
 							</ul>
 						</div>
 					</div>
@@ -97,7 +115,7 @@ session_start();
 					<div class="col-sm-3 pull-right">
 						<div class="search_box">
 							<form method="post" action="search.php">
-								<input type="text" placeholder="Recherche" class="col-sm-10"/>
+								<input name="recherche" type="text" placeholder="Recherche" class="col-sm-10"/>
 								<button type="submit" class="btn btn-default search-box-btn">
 									<span class="glyphicon glyphicon-search"></span>
 								</button>

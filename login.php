@@ -1,11 +1,10 @@
+<?php include "header.php" // Includes Login Script ?>
 <?php
-session_start();
 if(isset($_SESSION['login_user']))
 {
    header('Location: ' . 'profile.php', true, $statusCode);
    die();
 }	
-include "header.php" // Includes Login Script
 ?>
 
 <?php
@@ -46,6 +45,8 @@ include "header.php" // Includes Login Script
 			    while($row = $result->fetch_assoc()) {
 			        echo "user: " . $row["Username"]. " - password: " . $row["Password"]. "<br>";
 			        $_SESSION['login_user'] = $loginuser;
+				$expire = 365*24*3600;
+				setcookie("nomUsager",$row["Prenom"],time()+$expire);
 			    }
 			                header('Location: ' . 'profile.php', true, $statusCode);
 			die();
