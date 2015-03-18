@@ -6,7 +6,21 @@ include "header.php" // Includes Login Script
 if(isset($_POST['submit']))
 {
   $Search = $_POST['Search'];
-  echo "<table style='border: solid 1px black;'>";
+  echo "<table id='example' style='border: solid 1px black;'>";
+  ?>
+    <tr>
+    <th>CUP</th>
+    <th>Modele</th>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Description</th>
+    <th>Image</th>
+    <th>PrixVente</th>
+    <th>PrixCout</th>
+    <th>Quantite en stock</th>
+    <th>Compagnie</th>
+    </tr>
+  <?php
 
 
   class TableRows extends RecursiveIteratorIterator {
@@ -23,7 +37,7 @@ if(isset($_POST['submit']))
     }
 
     function endChildren() {
-        echo "</tr>" . "\n";
+        echo "<td><a href='apple'>Edit</a></td></tr>" . "\n";
     }
 }
 
@@ -48,6 +62,8 @@ try {
     foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
         echo $v;
     }
+    ?>
+    <?php
 }
 catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
@@ -60,6 +76,21 @@ echo "</table>";
 <input type="text" name="Search">
 <input type="submit" name="submit">
 </form>
+
+
+<script>
+$(document).ready(function() {
+
+    $('#example tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});
+</script>
+
 <?php
 include "footer.php"
 ?>

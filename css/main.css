@@ -2707,3 +2707,23 @@ padding: 17px 30px;
    color: #333;
    font-weight: 300;
 }
+
+table#example {
+    border-collapse: collapse;   
+}
+#example tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#example tr:hover {
+    background-color: #ccc;
+}
+#example th {
+    background-color: #fff;
+}
+#example th, #example td {
+    padding: 3px 5px;
+}
+#example td:hover {
+    cursor: pointer;
+}
