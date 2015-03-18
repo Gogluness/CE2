@@ -7,7 +7,8 @@
 	if(isset($_SESSION['panier']))
 	{
 		include "objects/LignePanier.php";
-		mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
+		$link = mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
+		mysql_set_charset('utf8',$link);
 		mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
 		$listIDProduits = $_SESSION['panier'];

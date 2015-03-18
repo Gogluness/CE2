@@ -18,3 +18,8 @@ $(".add-to-cart").click(function() {
 	    );
     });
 });
+
+$(".overlay-top").click(function() {
+	var idProduit = $(this).siblings().find(".ID-produit").val();
+	location.href='product-details.php?id='+idProduit;
+});
