@@ -68,6 +68,7 @@ if(isset($_SESSION['login_user']))
 				</div>
 
 				<?php } ?>
+
 				<div class="col-md-12">
 					<h3>Identification</h3>
 				</div>
@@ -87,6 +88,10 @@ if(isset($_SESSION['login_user']))
 					<input type="submit" name="submit" value="Identifier" class="login-submit col-md-12">
 				</div>
 				</form>
+
+				<div class="col-md-12">
+					<h3>Pas de compte? <a href="register.php">Inscrivez-vous!</a></h3>
+				</div>
 			</div>
 			</div>
 			</div>

@@ -1,11 +1,44 @@
 <?php include "header.php"?>
 
+<?php 
+	if(!isset($_SESSION['login_user']))
+	{
+		header('Location: ' . 'register.php', true, $statusCode);
+   		die();
+	}
+	else
+	{
+		include "objects/Users.php";
+		$link = mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
+		mysql_set_charset('utf8',$link);
+		mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
+
+		$email = $_SESSION['login_user'];
+
+		$queryGetUser = "SELECT * FROM Users WHERE Email ='$email';";
+		$executionRequeteUser = mysql_query($queryGetUser);
+		$userRetour = mysql_fetch_array($executionRequeteUser);
+
+		$user = new Users();
+		$user->Nom = $userRetour["Nom"];
+		$user->Prenom = $userRetour["Prenom"];
+		$user->Adresse = $userRetour["Adresse"];
+		$user->CodePostal = $userRetour["CodePostal"];
+		$user->Ville = $userRetour["Ville"];
+		
+		mysql_close();
+	}
+?>
+
 <?php
 	$panier = array();
 	$prixTotal = 0;
 
 	if(isset($_SESSION['panier']))
 	{
+		$listeQuantite = $_REQUEST["stringQuantity"];
+		$tableauQuantite = explode("&",$listeQuantite);
+
 		include "objects/LignePanier.php";
 		$link = mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
 		mysql_set_charset('utf8',$link);
@@ -14,6 +47,7 @@
 		$listIDProduits = $_SESSION['panier'];
 		$tableauIDProduits = explode("&",$listIDProduits);
 
+		$i = 0;
 		foreach ($tableauIDProduits as $idProduitCourrant){
 
 			if($idProduitCourrant != null || $idProduitCourrant != "")
@@ -27,9 +61,18 @@
 				$lignePanier->Prix = $produitRetour["PrixVente"];
 				$lignePanier->ImgPath = $produitRetour["ImgPath"];
 				$lignePanier->ID = $produitRetour["ID"];
-				$lignePanier->Qte = 1;
+
+				if(isset($tableauQuantite[$i]) &&  @$tableauQuantite[$i] != null)
+				{
+					$lignePanier->Qte = $tableauQuantite[$i];
+				}
+				else
+				{
+					$lignePanier->Qte = 1;
+				}
 
 				array_push($panier, $lignePanier);
+				$i++;
 			}
 		}
 
@@ -40,12 +83,6 @@
 
 <section id="cart_items">
 		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="index.php">Accueil</a></li>
-				  <li class="active">Panier</li>
-				</ol>
-			</div>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -81,24 +118,17 @@
 								<p>
 									<?php 
 										echo $ligne->Prix;
-										$prixTotal = $prixTotal + $ligne->Prix;
+										$prixTotal = $prixTotal + $ligne->Prix * $ligne->Qte;
 									?>$
 								</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<p><?php echo $ligne->Qte; ?></p>
 								</div>
 							</td>
 							<td class="cart_total col-md-2">
-								<p class="cart_total_price"><?php echo $ligne->Prix;?>$</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="" data-ObjectID="<?php echo $ligne->ID;?>">
-									<i class="fa fa-times"></i>
-								</a>
+								<p class="cart_total_price"><?php echo $ligne->Prix * $ligne->Qte;?>$</p>
 							</td>
 						</tr>
 					<?php } ?><!--Fin foreach-->
@@ -120,11 +150,31 @@
 	</section> <!--/#cart_items-->
 	<section id="do_action">
 		<div class="container">
-			<div class="heading">
-				<h3>Que voulez-vous faire maintenant?</h3>
-				<p>Vous pouvez continuer votre magasinage ou bien procéder au paiement des articles dans votre panier.</p>
-			</div>
-				<div class="col-sm-6 col-sm-offset-6">
+				<div class="col-sm-6">
+					<div class="chose_area">
+						<ul class="user_option">
+							<li>
+								<h4>Livraison à:</h4>
+							</li>
+							<li>
+								<label><?php echo $user->Prenom.$user->Nom ?></label>
+							</li>
+							<li>
+								<label><?php echo $user->Adresse ?></label>
+							</li>
+							<li>
+								<label><?php echo $user->Ville ?></label>
+							</li>
+							<li>
+								<label><?php echo $user->CodePostal ?>, Québec</label>
+							</li>
+							<li>
+								<label>Canada</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
 							<li>Total panier <span id="total-cart"><?php echo $prixTotal; ?>$</span></li>
@@ -147,11 +197,9 @@
 								$</span>
 							</li>
 						</ul>
-							<form name="form-valide-commande" action="valider-commande.php">
-								<a class="btn btn-default update pull-right check_out" onclick="document.forms['form-valide-commande'].submit();">Valider la commande</a>
-								<input type="hidden" name="stringQuantity" id="stringQuantity"/>
-							</form>
-							<a class="btn btn-default update pull-right" href="shop.php">Continuer le magasinage</a>
+							<a id="btn-payer-paypal" class="btn btn-default check_out pull-right" href="">Payer avec Paypal</a>
+							<a class="btn btn-default update pull-right" href="shop.php">Annuler</a>
+							<?php include "payer-paypal.php"; ?>
 					</div>
 				</div>
 			</div>

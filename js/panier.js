@@ -41,6 +41,7 @@ function changedQte(currentElement, quantity)
 
 	$(currentElement).closest("tr").find(".cart_total_price").text(prixTotal + "$");
 	changerPrixTotal();
+	saveQuantity();
 }
 
 function changerPrixTotal()
@@ -77,3 +78,20 @@ $("#btn-payer-paypal").click(function(event) {
 	$("#form-payer-paypal").submit();
 });
 
+function createStringQuantity()
+{
+	var stringQuantity = "";
+
+	$(".cart_quantity_button input").each(function() {
+		stringQuantity += $(this).val() + "&";
+	});
+	
+	return stringQuantity.slice(0,-1);
+}
+
+function saveQuantity()
+{
+	var stringQuantity = createStringQuantity();
+
+	$("#stringQuantity").val(stringQuantity);
+}

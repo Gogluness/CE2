@@ -32,9 +32,13 @@ if (isset($_POST['submit']))
 		else{
             $nom = stripslashes($_POST["nom"]);
             $prenom = stripslashes($_POST["prenom"]);
-            $loginuser = stripslashes($_POST["email"]);
+            $loginuser = stripslashes($_POST["username"]);
+	    $email = stripslashes($_POST["email"]);
             $loginpassword = stripslashes($_POST["password"]);
             $confirmpassword = stripslashes($_POST["confirmPassword"]);
+	    $adresse = stripslashes($_POST["adresse"]);
+	    $codePostal = stripslashes($_POST["codePostal"]);
+	    $ville = stripslashes($_POST["ville"]);
 
             if($loginpassword == $confirmpassword)
             {
@@ -51,7 +55,8 @@ if (isset($_POST['submit']))
                 die("Connection failed: " . mysqli_connect_error());
             }
 
-            $sql = "INSERT INTO Users (Prenom, Nom, Username, Password) VALUES ('$prenom', '$nom', '$loginuser', '$loginpassword')";
+            $sql = "INSERT INTO Users (Prenom, Nom, Username, Password, Email, Adresse, CodePostal, Ville) 
+		VALUES ('$prenom', '$nom', '$loginuser', '$loginpassword', '$email', '$adresse', '$codePostal', '$ville')";
 
             if (mysqli_query($conn, $sql)) {
                 echo "New record created successfully";
@@ -84,6 +89,9 @@ if (isset($_POST['submit']))
 
 				<?php } ?>
 				<div class="col-md-12">
+					<h3>Déjà inscrit? <a href="login.php">Connectez-vous!</a></h3>
+				</div>
+				<div class="col-md-12">
 					<h3>Inscription</h3>
 				</div>
 
@@ -101,6 +109,30 @@ if (isset($_POST['submit']))
 				</div>
 
 				<div class="col-md-12">
+				<div class="login-input-label col-md-3">Adresse</div>
+					<input type="text" name="adresse" class="col-md-9 login-input"
+					placeholder="ex: 1010 rue de gauche">
+				</div>
+
+				<div class="col-md-6">
+				<div class="login-input-label col-md-3">ville</div>
+					<input type="text" name="ville" class="col-md-9 login-input"
+					placeholder="ex: Québec">
+				</div>
+
+				<div class="col-md-6">
+				<div class="login-input-label col-md-5">Code postal</div>
+					<input type="text" name="codePostal" class="col-md-7 login-input"
+					placeholder="ex: A1A 1A1">
+				</div>
+
+				<div class="col-md-12">
+				<div class="login-input-label col-md-3">Nom d'utilisateur</div>
+					<input type="text" name="username" class="col-md-9 login-input"
+					placeholder="ex: jeandit">
+				</div>
+
+				<div class="col-md-12">
 				<div class="login-input-label col-md-3">Email</div>
 					<input type="email" name="email" class="col-md-9 login-input"
 					placeholder="ex: mon@email.com">
@@ -114,7 +146,7 @@ if (isset($_POST['submit']))
 				</div>
 
 				<div class="col-md-12">
-					<input type="submit" name="submit" value="Inscrire" class="login-submit col-md-12">
+					<input type="submit" name="submit" value="S'inscrire" class="login-submit col-md-12">
 				</div>
 				</form>
 			</div>
