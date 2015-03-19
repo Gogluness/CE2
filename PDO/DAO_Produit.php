@@ -1,7 +1,7 @@
 <?php
 require_once("DAO.php");
-include("objects/Users.php");
-class DAO_Users extends DAO implements iMySqlDao
+include("objects/Produit.php");
+class DAO_Produit extends DAO implements iMySqlDao
 {
 		static function GetAll(){
 			$query = "SELECT * FROM Produit";
@@ -14,7 +14,7 @@ class DAO_Users extends DAO implements iMySqlDao
 		static function GetById($id){
 			$query = "SELECT * FROM Produit WHERE ID = :id";
 			$stmt = $conn->prepare($query);
-			$stmt->execute(array(':id' => $id));;
+			$stmt->execute(array(':id' => $id));
 			// set the resulting array to associative
 			$result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Produit');
 			return $result;
@@ -22,7 +22,7 @@ class DAO_Users extends DAO implements iMySqlDao
 		static function GetByCup($CUP){
 			$query = "SELECT * FROM Produit WHERE CUP = :CUP";
 			$stmt = $conn->prepare($query);
-			$stmt->execute(array(':CUP' => $CUP));;
+			$stmt->execute(array(':CUP' => $CUP));
 			// set the resulting array to associative
 			$result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Produit');
 			return $result;
@@ -52,10 +52,40 @@ class DAO_Users extends DAO implements iMySqlDao
 			{
 				$query = "DELETE FROM Produit WHERE ID = ?";
 				$stmt = $conn->prepare($query);
-				$stmt->execute(array($object->$Email));;
-				// set the resulting array to associative
+				$stmt->execute(array($object->$ID));;
 			}
 		}
+
+		static function Update($object)
+		{
+			if(is_a($object,'Produit'))
+			{
+				$query = "UPDATE Produit SET
+					 CUP = :CUP
+					,Description = :Descr
+					,IDModele = :Modele
+					,ImgPath = :Img
+					,Nom = :Nom
+					,NomCompagnie = :Compagnie
+					,PrixCout = :PrixCout
+					,PrixVente = :PrixVente
+					,Quantite = :Quantite
+				WHERE ID = :id";
+				$stmt = $conn->prepare($query);
+				$stmt->execute(array(
+					 ':id' => $object->$id
+					,':CUP' => $object->$CUP
+					,':Descr' => $object->$Description
+					,':Modele' => $object->$IDModele
+					,':Img' => $object->$ImgPath
+					,':Nom' => $object->$Nom
+					,':Compagnie' => $object->$NomCompagnie
+					,':PrixCout' => $object->$PrixCout
+					,':PrixVente' => $object->$PrixVente
+					,':Quantite' => $object->$Quantite);
+			}
+		}
+
 		static function SearchByName($name){
 			$query = "SELECT * FROM Produit WHERE Name LIKE ?";
 			$stmt = $conn->prepare($query);

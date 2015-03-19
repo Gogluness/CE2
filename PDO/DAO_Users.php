@@ -6,25 +6,28 @@ class DAO_Users extends DAO implements iMySqlDao
 		static function GetAll(){
 			$query = "SELECT * FROM USERS";
 			$stmt = $conn->prepare($query);
+			$stmt->setFetchMode(PDO::FETCH_CLASS, 'Users'); 
 			$stmt->execute();
 			// set the resulting array to associative
-			$result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Users');
+			$result = $stmt->fetch();
 			return $result;
 		}
 		static function GetById($id){
 			$query = "SELECT * FROM USERS WHERE ID = :id";
 			$stmt = $conn->prepare($query);
-			$stmt->execute(array(':id' => $id));;
+			$stmt->setFetchMode(PDO::FETCH_CLASS, 'Users'); 
+			$stmt->execute(array(':id' => $id));
 			// set the resulting array to associative
-			$result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Users');
+			$result = $stmt->fetch();
 			return $result;
 		}
 		static function GetByEmail($email){
 			$query = "SELECT * FROM USERS WHERE EMAIL = :email";
 			$stmt = $conn->prepare($query);
+			$stmt->setFetchMode(PDO::FETCH_CLASS, 'Users'); 
 			$stmt->execute(array(':email' => $email));;
 			// set the resulting array to associative
-			$result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Users');
+			$result = $stmt->fetch();
 			return $result;
 		}
 		static function Add($object)
@@ -43,7 +46,7 @@ class DAO_Users extends DAO implements iMySqlDao
 			{
 				$query = "DELETE FROM Users WHERE ID = ?";
 				$stmt = $conn->prepare($query);
-				$stmt->execute(array($object->$Email));;
+				$stmt->execute(array($object->$ID));;
 				// set the resulting array to associative
 			}
 		}

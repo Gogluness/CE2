@@ -18,6 +18,15 @@ class Produit
 	public $Emballage;
 	public $Cordes;
 	public $Poids;
+
+	static function GetById($id){
+		$query = "SELECT * FROM Produit WHERE ID = :id";
+		$stmt = $conn->prepare($query);
+		$stmt->execute(array(':id' => $id));;
+		// set the resulting array to associative
+		$result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Produit');
+		return $result;
+	}
 }
 ?>
 

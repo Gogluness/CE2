@@ -20,7 +20,7 @@
 		function DataToTable($Rows)
 		{
 			// open the table
-			$str =  "<table wdith=\"100%\">\n";
+			$str =  "<table wdith='100%'>\n";
 			$str .= "<tr>\n";
 			// add the table headers
 			foreach ($Rows[0] as $key => $useless){
