@@ -7,11 +7,14 @@ website: http://invoinn.com
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
+html{
+  min-height:100%;
+  position:relative;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
   background:;
-  position: relative;
   font-weight:400px;
 }
 
@@ -347,6 +350,9 @@ ul.sub-menu {
 
 #footer {
   background: #172431;
+  bottom:0px;
+  width:100%;
+  position: absolute;
 }
 
 
@@ -1116,6 +1122,10 @@ h2.title {
   padding-left: 15px;
 }
 
+.page-div:last-child{
+  padding-bottom:25px;
+}
+
 .pagination  li:first-child  a, .pagination  li:first-child  span {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -1306,6 +1316,12 @@ h2.title {
   margin-bottom: 10px;
   margin-left: 20px;
 }
+
+.cart:hover {
+  background-color: #5C7B9D;
+  color: #FFFFFF;
+}
+
 
 
 .shop-details-tab {
@@ -2595,6 +2611,10 @@ h2.title {
 .outer-panel
 {
   margin-bottom:3em;
+}
+
+.background-panel
+{
     background-color:#D3D3D3;
 }
 
@@ -2655,7 +2675,7 @@ h2.title {
       background: rgba(240,240,240,1);
 }
 
-.login-submit
+.big-buttons
 { 
     padding:5px 4px;
   text-align: center;
@@ -2675,9 +2695,10 @@ padding: 17px 30px;
   outline:none;
   width: 100%;
   -webkit-appearance: none;
+  margin:0.5em 0;
 }
 
-.login-submit:hover
+.big-buttons:hover
 {
      background:#07793D;
    border:1px solid #07793D;
@@ -2708,22 +2729,22 @@ padding: 17px 30px;
    font-weight: 300;
 }
 
-table#example {
-    border-collapse: collapse;   
+div.product-overlay{
+   cursor:pointer;
 }
-#example tr {
-    background-color: #eee;
-    border-top: 1px solid #fff;
+
+div.overlay-content{
+   cursor:default;
+   z-index:1000;
 }
-#example tr:hover {
-    background-color: #ccc;
+
+.overlay-top{
+   width:100%;
+   height:100%;
+   position: absolute;
+   top:0px;
 }
-#example th {
-    background-color: #fff;
-}
-#example th, #example td {
-    padding: 3px 5px;
-}
-#example td:hover {
-    cursor: pointer;
+
+.add-to-cart:focus{
+	color:#FFFFFF;
 }
