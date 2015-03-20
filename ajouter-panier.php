@@ -1,16 +1,13 @@
 <?php
 session_start();
 
-$objetPanier = $_POST['data'];
+$idProduit = $_POST['data'];
 
-if(isset($_SESSION['panier']))
+if(!isset($_SESSION['panier']))
 {
-	$objetPanier = $_SESSION['panier']."&".$objetPanier;
+	$_SESSION['panier'] = array();
 }
 
-$objetPanier = trim($objetPanier, "&");
-$_SESSION['panier'] = $objetPanier;
-
+$_SESSION['panier'][$idProduit]['Quantite'] = 1;
 ?>
-
-
+ 

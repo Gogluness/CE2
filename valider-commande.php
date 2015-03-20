@@ -44,36 +44,22 @@
 		mysql_set_charset('utf8',$link);
 		mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
-		$listIDProduits = $_SESSION['panier'];
-		$tableauIDProduits = explode("&",$listIDProduits);
+		$arrayProduits = $_SESSION['panier'];
 
-		$i = 0;
-		foreach ($tableauIDProduits as $idProduitCourrant){
+		foreach ($arrayProduits as $IDProduit => $produitPanier)
+		{
+			$queryGetProduit = "SELECT * FROM Produit WHERE ID = $IDProduit;";
+			$executionRequeteProduit = mysql_query($queryGetProduit);
+			$produitRetour = mysql_fetch_array($executionRequeteProduit);
 
-			if($idProduitCourrant != null || $idProduitCourrant != "")
-			{
-				$queryGetProduit = "SELECT * FROM Produit WHERE ID =$idProduitCourrant;";
-				$executionRequeteProduit = mysql_query($queryGetProduit);
-				$produitRetour = mysql_fetch_array($executionRequeteProduit);
+			$lignePanier = new LignePanier();
+			$lignePanier->Nom = $produitRetour["Nom"];
+			$lignePanier->Prix = $produitRetour["PrixVente"];
+			$lignePanier->ImgPath = $produitRetour["ImgPath"];
+			$lignePanier->ID = $produitRetour["ID"];
+			$lignePanier->Qte = $produitPanier['Quantite'];
 
-				$lignePanier = new LignePanier();
-				$lignePanier->Nom = $produitRetour["Nom"];
-				$lignePanier->Prix = $produitRetour["PrixVente"];
-				$lignePanier->ImgPath = $produitRetour["ImgPath"];
-				$lignePanier->ID = $produitRetour["ID"];
-
-				if(isset($tableauQuantite[$i]) &&  @$tableauQuantite[$i] != null)
-				{
-					$lignePanier->Qte = $tableauQuantite[$i];
-				}
-				else
-				{
-					$lignePanier->Qte = 1;
-				}
-
-				array_push($panier, $lignePanier);
-				$i++;
-			}
+			array_push($panier, $lignePanier);
 		}
 
 		mysql_close();

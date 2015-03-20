@@ -11,30 +11,25 @@
 		mysql_set_charset('utf8',$link);
 		mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
 
-		$listIDProduits = $_SESSION['panier'];
-		$tableauIDProduits = explode("&",$listIDProduits);
+		$arrayProduits = $_SESSION['panier'];
 
-		foreach ($tableauIDProduits as $idProduitCourrant){
+		foreach ($arrayProduits as $IDProduit => $produitPanier)
+		{
+			$queryGetProduit = "SELECT * FROM Produit WHERE ID = $IDProduit;";
+			$executionRequeteProduit = mysql_query($queryGetProduit);
+			$produitRetour = mysql_fetch_array($executionRequeteProduit);
 
-			if($idProduitCourrant != null || $idProduitCourrant != "")
-			{
-				$queryGetProduit = "SELECT * FROM Produit WHERE ID =$idProduitCourrant;";
-				$executionRequeteProduit = mysql_query($queryGetProduit);
-				$produitRetour = mysql_fetch_array($executionRequeteProduit);
+			$lignePanier = new LignePanier();
+			$lignePanier->Nom = $produitRetour["Nom"];
+			$lignePanier->Prix = $produitRetour["PrixVente"];
+			$lignePanier->ImgPath = $produitRetour["ImgPath"];
+			$lignePanier->ID = $produitRetour["ID"];
+			$lignePanier->Qte = $produitPanier['Quantite'];
 
-				$lignePanier = new LignePanier();
-				$lignePanier->Nom = $produitRetour["Nom"];
-				$lignePanier->Prix = $produitRetour["PrixVente"];
-				$lignePanier->ImgPath = $produitRetour["ImgPath"];
-				$lignePanier->ID = $produitRetour["ID"];
-				$lignePanier->Qte = 1;
-
-				array_push($panier, $lignePanier);
-			}
+			array_push($panier, $lignePanier);
 		}
 
 		mysql_close();
-
 	}
 ?>
 
@@ -75,25 +70,27 @@
 								<h4>
 									<a href=""><?php echo $ligne->Nom;?></a>
 								</h4>
-								<p>Web ID: <?php echo $ligne->ID;?></p>
+								<p>Web ID: <?php echo "<span class='productID'>$ligne->ID</span>";?></p>
 							</td>
 							<td class="cart_price">
 								<p>
 									<?php 
 										echo $ligne->Prix;
-										$prixTotal = $prixTotal + $ligne->Prix;
+										$prixTotal = $prixTotal + $ligne->Prix * $ligne->Qte;
 									?>$
 								</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $ligne->Qte ?>" autocomplete="off" size="2">
 									<a class="cart_quantity_down" href=""> - </a>
 								</div>
 							</td>
 							<td class="cart_total col-md-2">
-								<p class="cart_total_price"><?php echo $ligne->Prix;?>$</p>
+								<p class="cart_total_price">
+									<?php echo $ligne->Prix * $ligne->Qte;?>$
+								</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href="" data-ObjectID="<?php echo $ligne->ID;?>">

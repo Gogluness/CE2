@@ -676,6 +676,11 @@ ul.sub-menu {
   padding-bottom: 20px;
   padding-top: 15px;
 }
+
+.left-sidebar{
+  margin-bottom: 10em;
+}
+
 .left-sidebar h2, .brands_products h2 {
   color: #3A5C83;
   font-family: 'Roboto', sans-serif;

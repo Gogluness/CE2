@@ -41,7 +41,9 @@ function changedQte(currentElement, quantity)
 
 	$(currentElement).closest("tr").find(".cart_total_price").text(prixTotal + "$");
 	changerPrixTotal();
-	saveQuantity();
+
+	var id = $(currentElement).closest("tr").find(".productID").text();
+	saveQuantity(id, quantity);
 }
 
 function changerPrixTotal()
@@ -72,26 +74,45 @@ function estPositif(nombre) {
 $("#btn-payer-paypal").click(function(event) {
 	event.preventDefault();
 
-	var montantFinal = $("#cart-final-total").text();
+	request = $.ajax({
+	    url: "enregistrer-commande.php",
+	    type: "post"
+	});
+
+	request.done(function (response, textStatus, jqXHR){
+	    var montantFinal = $("#cart-final-total").text();
 	
-	$("#paypal-amount").val(parseFloat(montantFinal));
-	$("#form-payer-paypal").submit();
+		$("#paypal-amount").val(parseFloat(montantFinal));
+		$("#form-payer-paypal").submit();
+	});
+
+	request.fail(function (jqXHR, textStatus, errorThrown){
+	    alert(
+		"L'erreur suivante est survenue: "+
+		textStatus, errorThrown
+	    );
+    	});
 });
 
-function createStringQuantity()
-{
-	var stringQuantity = "";
 
-	$(".cart_quantity_button input").each(function() {
-		stringQuantity += $(this).val() + "&";
+function saveQuantity(id, quantity)
+{
+	var objectToSend =
+	{     
+            ID : id,
+            Quantite : quantity
+        }
+
+	request = $.ajax({
+	    url: "change-quantite.php",
+	    type: "post",
+	    data: objectToSend
 	});
-	
-	return stringQuantity.slice(0,-1);
-}
 
-function saveQuantity()
-{
-	var stringQuantity = createStringQuantity();
-
-	$("#stringQuantity").val(stringQuantity);
+	request.fail(function (jqXHR, textStatus, errorThrown){
+	    alert(
+		"L'erreur suivante est survenue: "+
+		textStatus, errorThrown
+	    );
+    	});
 }

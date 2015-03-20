@@ -676,6 +676,11 @@ ul.sub-menu {
   padding-bottom: 20px;
   padding-top: 15px;
 }
+
+.left-sidebar{
+  argin-bottom: 10em;
+}
+
 .left-sidebar h2, .brands_products h2 {
   color: #3A5C83;
   font-family: 'Roboto', sans-serif;
@@ -1123,7 +1128,7 @@ h2.title {
 }
 
 .page-div:last-child{
-  padding-bottom:250px;
+  padding-bottom:25px;
 }
 
 .pagination  li:first-child  a, .pagination  li:first-child  span {
