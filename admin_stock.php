@@ -10,36 +10,17 @@ if(isset($_POST['submit']))
   ?>
     <tr>
     <th>CUP</th>
-    <th>Modele</th>
-    <th>ID</th>
     <th>Nom</th>
+    <th>Modele</th>
     <th>Description</th>
+    <th>Compagnie</th>
     <th>Image</th>
     <th>PrixVente</th>
     <th>PrixCout</th>
     <th>Quantite en stock</th>
-    <th>Compagnie</th>
+    <th></th>
     </tr>
   <?php
-
-
-  class TableRows extends RecursiveIteratorIterator {
-    function __construct($it) {
-        parent::__construct($it, self::LEAVES_ONLY);
-    }
-
-    function current() {
-        return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
-    }
-
-    function beginChildren() {
-        echo "<tr>";
-    }
-
-    function endChildren() {
-        echo "<td><a href='apple'>Edit</a></td></tr>" . "\n";
-    }
-}
 
 $servername = "localhost";
 $username = "root";
@@ -50,20 +31,29 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $preparedStatement = "SELECT * FROM Produit";
-    if(!empty($Search) AND !is_null($Search))
-    {
-      $preparedStatement .= " WHERE CUP LIKE '%".$Search ."%' OR Nom LIKE '%".$Search."%'";
-    }
     $stmt = $conn->prepare($preparedStatement);
     $stmt->execute();
+    $rows = $stmt->FetchAll();
 
     // set the resulting array to associative
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-        echo $v;
+    foreach($rows as $row)
+    {
+        ?>
+        <tr>
+
+        <td> <?php echo($row['CUP']); ?> </td>
+        <td> <?php echo($row['Nom']); ?> </td>
+        <td> <?php echo($row['IDModele']); ?> </td>
+        <td> <?php echo($row['Description']); ?> </td>
+        <td> <?php echo($row['NomCompagnie']); ?> </td>
+        <td> <img src="<?php echo($row['ImgPath']); ?>" ></td>
+        <td> <?php echo($row['PrixVente']); ?> </td>
+        <td> <?php echo($row['PrixCout']); ?> </td>
+        <td> <?php echo($row['Quantite']); ?> </td>
+        <td> <a href="localhost/modifier_stock.php?ID=<?php echo($row['ID']); ?>" >Edit</a></td>
+        </tr>
+        <?php
     }
-    ?>
-    <?php
 }
 catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
@@ -76,20 +66,6 @@ echo "</table>";
 <input type="text" name="Search">
 <input type="submit" name="submit">
 </form>
-
-
-<script>
-$(document).ready(function() {
-
-    $('#example tr').click(function() {
-        var href = $(this).find("a").attr("href");
-        if(href) {
-            window.location = href;
-        }
-    });
-
-});
-</script>
 
 <?php
 include "footer.php"
