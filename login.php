@@ -58,12 +58,12 @@ if(isset($_SESSION['login_user']))
 	}
 		?>
 		<section>
-		<div class="container outer-panel">
+		<div class="container outer-panel background-panel">
 			<div class="col-md-10 col-md-offset-1 login-panel">
 			<div class="col-md-10 col-md-offset-2 inner-panel">
 			<form action="login.php" method="POST">
-							<?php if(isset($error) AND !empty($error)) {?>
-				<div class="col-md-12 login-error">
+			<?php if(isset($error) AND !empty($error)) {?>
+				<div class="col-md-12 l-error">
 				<p><?php echo($error); ?><p>
 				</div>
 
@@ -73,18 +73,18 @@ if(isset($_SESSION['login_user']))
 				</div>
 
 				<div class="col-md-12">
-				<div class="login-input-label col-md-3">Email</div>
-					<input type="email" name="email" class="col-md-9 login-input"
+				<div class="l-input-label col-md-3">Email</div>
+					<input type="email" name="email" class="col-md-9 l-input with-label"
 					placeholder="ex: mon@email.com">
 				</div>
 
 				<div class="col-md-12">
-				<div class="login-input-label col-md-3">Mot de passe</div>
-					<input type="password" name="password" class="col-md-9 login-input">
+				<div class="l-input-label col-md-3">Mot de passe</div>
+					<input type="password" name="password" class="col-md-9 l-input with-label">
 				</div>
 
 				<div class="col-md-12">
-					<input type="submit" name="submit" value="Identifier" class="login-submit col-md-12">
+					<input type="submit" name="submit" value="Identifier" class="big-buttons col-md-12">
 				</div>
 				</form>
 			</div>

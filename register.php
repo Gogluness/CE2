@@ -89,28 +89,28 @@ if (isset($_POST['submit']))
 
 				<div>
 				<div class="col-md-6">
-				<div class="login-input-label col-md-3">Prenom</div>
-					<input type="text" name="prenom" class="login-input col-md-9"
+				<div class="l-input-label col-md-3">Prenom</div>
+					<input type="text" name="prenom" class="l-input with-label col-md-9"
 					placeholder="ex: Jean">
 				</div>
 				<div class="col-md-6">
-				<div class="login-input-label col-md-3">Nom</div>
-					<input type="text" name="nom" class="col-md-9 login-input"
+				<div class="l-input-label col-md-3">Nom</div>
+					<input type="text" name="nom" class="col-md-9 l-input with-label"
 					placeholder="ex: Dit">
 				</div>
 				</div>
 
 				<div class="col-md-12">
-				<div class="login-input-label col-md-3">Email</div>
-					<input type="email" name="email" class="col-md-9 login-input"
+				<div class="l-input-label col-md-3">Email</div>
+					<input type="email" name="email" class="col-md-9 l-input with-label"
 					placeholder="ex: mon@email.com">
 				</div>
 
 				<div class="col-md-12">
-				<div class="login-input-label col-md-3">Mot de passe</div>
-					<input type="password" name="password" class="col-md-9 login-input">
-					<div class="login-input-label col-md-3">Confirmation</div>
-					<input type="password" name="confirmPassword" class="col-md-9 login-input">
+				<div class="l-input-label col-md-3">Mot de passe</div>
+					<input type="password" name="password" class="col-md-9 l-input with-label">
+					<div class="l-input-label col-md-3">Confirmation</div>
+					<input type="password" name="confirmPassword" class="col-md-9 l-input with-label">
 				</div>
 
 				<div class="col-md-12">
