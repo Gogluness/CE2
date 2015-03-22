@@ -2678,6 +2678,16 @@ h2.title {
 {
   background-color:rgba(255,0,0,0.1);
 }
+
+.l-area
+{
+  height: inherit;
+}
+
+.l-area-container
+{
+  height: 10em;
+}
 .input-inlines
 {
   display:inline;

@@ -68,6 +68,7 @@ echo "</tbody> </table>";
 <input type="text" name="Search" class="l-input dark-input col-md-12">
 <input type="submit" name="submit" value="Rechercher" class="big-buttons">
 </form>
+<a href="modifier_stock.php" class="big-buttons"> Nouveau </a>
 </div>
 
 <?php
