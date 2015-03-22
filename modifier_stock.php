@@ -28,7 +28,7 @@ function code($err_code)
 	}
 }
 
-function GetModele()
+function GetModele($Modele)
 {
 	$sername = "localhost";
 	$dbname = "CE2";
@@ -36,27 +36,27 @@ function GetModele()
 	$password = "admin123";
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $preparedStatement = "SELECT * FROM Modele";
+    $preparedStatement = "SELECT ID, NomModele FROM Modele";
     $stmt = $conn->prepare($preparedStatement);
     $stmt->execute();
     $rows = $stmt->FetchAll();
-
     // set the resulting array to associative
     foreach($rows as $row)
     {
     	if($row['ID'] == $Modele)
     	{
     	?>
-			<option value="<?php $row['ID'] ?>"><?php echo($row['NomModele']) ?></option>
+			<option selected value='<?php echo($row['ID']) ?>'><?php echo($row['NomModele']) ?></option>
     	<?php
     	}
     	else
     	{
     	?>
-			<option selected value="<?php $row['ID'] ?>"><?php echo($row['NomModele']) ?></option>
+			<option value='<?php echo($row['ID']) ?>'><?php echo($row['NomModele']) ?></option>
     	<?php
     	}
     }
+    $conn = null;
 }
 	
 	if(isset($_GET["ID"]))
@@ -77,45 +77,13 @@ function GetModele()
 	$CUP = $rows['CUP'];
 	$Description = $rows['Description'];
 	$ImgPath = $rows['ImgPath'];
-	$Modele = $rows['Modele'];
+	$Modele = $rows['IDModele'];
 	$Nom = $rows['Nom'];
 	$NomCompagnie = $rows['NomCompagnie'];
 	$PrixCout = $rows['PrixCout'];
 	$PrixVente = $rows['PrixVente'];
 	$Qte = $rows['Quantite'];
-
-if(isset($_POST['submit']))
-{
-	$sername = "localhost";
-	$dbname = "CE2";
-	$username = "root";
-	$password = "admin123";
-	$dir = "images/CerfVolantImages/NEW/";
-	//si le fichier existe
-	if (isset($_FILES["fichier"])){
-		echo "Upload du fichier ". $_FILES["fichier"]["name"] . " en cours...<P>";
-	}
-	//copie du fichier du dossier temporaire au bon endroit
-	if ( @copy($_FILES["fichier"]["tmp_name"],$dir.$_FILES["fichier"]["name"])){
-		code($_FILES["fichier"]["error"]);
-	}
-	else {
-		code($_FILES["fichier"]["error"]);
-	}
-	$ImgPath = $dir . $_FILES["fichier"]["name"];
-	$CUP = $_POST['CUP'];
-	$Description = $_POST['Description'];
-	$Modele = $_POST['Modele'];
-	$Nom = $_POST['Nom'];
-	$NomCompagnie = $_POST['NomCompagnie'];
-	$PrixCout = $_POST['PrixCout'];
-	$PrixVente = $_POST['PrixVente'];
-	$Qte = $_POST['Quantite'];
-
-	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-}
+$conn = null;
 ?>
 
 
@@ -123,7 +91,7 @@ if(isset($_POST['submit']))
 		<div class="container outer-panel background-panel">
 			<div class="col-md-10 col-md-offset-1 login-panel">
 			<div class="col-md-12 inner-panel">
-	<form action="modifier_stock.php" method="POST" enctype="multipart/form-data">
+	<form action="test.php" method="POST" enctype="multipart/form-data">
 		<div class="col-md-12">
 		<div class="col-md-6">
 					<img src="images/CerfVolantImages/<?php echo($ImgPath); ?>" height="50%" width="50%">
@@ -133,7 +101,7 @@ if(isset($_POST['submit']))
 		<input type="file" name="fichier">
 		</div>
 		</div>
-		<input type="hidden" name="ID">
+		<input type="hidden" name="formID" value="<?php echo($_GET['ID']); ?>">
 		<div class="col-md-12">
 			<div class="l-input-label col-md-3">CUP</div>	
 			<input type="text" name="CUP" class="l-input with-label col-md-9" placeholder="XXXXXXXXXXX" value="<?php echo($CUP); ?>">
@@ -155,7 +123,7 @@ if(isset($_POST['submit']))
 		<div class="col-md-12">
 			<div class="l-input-label col-md-3">Modele</div>
 			<select name="Modele" class="l-input with-label col-md-9">
-			<?php GetModele(); ?>
+			<?php GetModele($Modele);?>
 			</select>
 		</div>
 		<div class="col-md-12">
