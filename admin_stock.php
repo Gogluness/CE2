@@ -40,7 +40,7 @@ try {
     foreach($rows as $row)
     {
         ?>
-        <tr onclick="window.location='modifier_stock.php?ID=<?php echo($row["ID"]); ?>'">
+        <tr onclick="window.location='formulaire_stock.php?ID=<?php echo($row["ID"]); ?>'">
 
         <td> <?php echo($row['CUP']); ?> </td>
         <td> <?php echo($row['Nom']); ?> </td>
@@ -68,7 +68,7 @@ echo "</tbody> </table>";
 <input type="text" name="Search" class="l-input dark-input col-md-12">
 <input type="submit" name="submit" value="Rechercher" class="big-buttons">
 </form>
-<a href="modifier_stock.php" class="big-buttons"> Nouveau </a>
+<a href="formulaire_stock.php" class="big-buttons"> Nouveau </a>
 </div>
 
 <?php
