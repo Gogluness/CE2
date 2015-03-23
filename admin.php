@@ -1,6 +1,14 @@
 <?php
 include "header.php" // Includes Login Script
 ?>
+<?php
+if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
+{
+   echo "vous n'etes pas admin";
+}
+else
+{  
+?>
 <section>
 <div class="outer-panel">
 <div class="container">
@@ -14,13 +22,11 @@ include "header.php" // Includes Login Script
 	<div class="col-md-12">
 		<input type="button" onclick="location.href='admin_stock.php'" name="btnGstStock" value="Gestion de stock" class="big-buttons col-md-12">
 	</div>
-	<div class="col-md-12">
-		<input type="button" onclick="location.href='admin_users.php'" name="btnGstUser" value="Gestion d'utilisateurs" class="big-buttons col-md-12">
-	</div>
 </div>
 </div>
 </div>
 </section>
+<?php } ?>
 <?php
 include "footer.php" // Includes Login Script
 ?>

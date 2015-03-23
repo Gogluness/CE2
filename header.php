@@ -49,10 +49,18 @@ session_start();
 									}
 									elseif(isset($_SESSION['login_user']))
 									{
-										echo "<li>Bonjour <a href='profile.php'>".$_SESSION['login_user']."</a></li>";
+										echo "<li><span>Bonjour <a href='profile.php'>".$_SESSION['login_user']."</a></span></li>";
 									}
 								?>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Panier</a></li>
+								<?php
+									if(isset($_SESSION['login_user']) && $_SESSION['login_user'] == "my@admin.com")
+									{ 
+								?>
+								<li><a href="admin.php"><i class="fa fa-pencil"></i> Admin</a></li>
+								<?php 
+									} 
+								?>
 								<?php
 									if(isset($_SESSION['login_user']))
 									{ 
