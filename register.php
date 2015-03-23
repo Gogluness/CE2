@@ -146,7 +146,7 @@ if (isset($_POST['submit']))
 				</div>
 
 				<div class="col-md-12">
-					<input type="submit" name="submit" value="Inscrire" class="big-buttons col-md-12">
+					<input type="submit" name="submit" value="S'inscrire" class="big-buttons col-md-12">
 				</div>
 				</form>
 			</div>

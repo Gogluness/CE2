@@ -58,43 +58,41 @@ if(isset($_SESSION['login_user']))
 	}
 		?>
 		<section>
-		<div class="container outer-panel">
-			<div class="col-md-10 col-md-offset-1 login-panel">
-			<div class="col-md-10 col-md-offset-2 inner-panel">
-			<form action="login.php" method="POST">
+			<div class="container outer-panel background-panel">
+				<div class="col-md-10 col-md-offset-1 login-panel">
+					<div class="col-md-10 col-md-offset-2 inner-panel">
+						<form action="login.php" method="POST">
 							<?php if(isset($error) AND !empty($error)) {?>
-				<div class="col-md-12 login-error">
-				<p><?php echo($error); ?><p>
-				</div>
+								<div class="col-md-12 login-error">
+								<p><?php echo($error); ?><p>
+								</div>
+							<?php } ?>
 
-				<?php } ?>
+							<div class="col-md-12">
+								<h3>Identification</h3>
+							</div>
 
-				<div class="col-md-12">
-					<h3>Identification</h3>
-				</div>
+							<div class="col-md-12">
+							<div class="login-input-label col-md-3">Email</div>
+								<input type="email" name="email" class="col-md-9 login-input"
+								placeholder="ex: mon@email.com">
+							</div>
 
-				<div class="col-md-12">
-				<div class="login-input-label col-md-3">Email</div>
-					<input type="email" name="email" class="col-md-9 login-input"
-					placeholder="ex: mon@email.com">
-				</div>
+							<div class="col-md-12">
+							<div class="login-input-label col-md-3">Mot de passe</div>
+								<input type="password" name="password" class="col-md-9 login-input">
+							</div>
 
-				<div class="col-md-12">
-				<div class="login-input-label col-md-3">Mot de passe</div>
-					<input type="password" name="password" class="col-md-9 login-input">
-				</div>
+							<div class="col-md-12">
+								<input type="submit" name="submit" value="Identifier" class="big-buttons col-md-12">
+							</div>
+						</form>
 
-				<div class="col-md-12">
-					<input type="submit" name="submit" value="Identifier" class="login-submit col-md-12">
-				</div>
-				</form>
-
-				<div class="col-md-12">
-					<h3>Pas de compte? <a href="register.php">Inscrivez-vous!</a></h3>
+						<div class="col-md-12">
+							<h3>Pas de compte? <a href="register.php">Inscrivez-vous!</a></h3>
+						</div>
+					</div>
 				</div>
 			</div>
-			</div>
-			</div>
-			</section>
-
+		</section>
 <?php include "footer.php"?>
