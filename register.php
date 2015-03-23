@@ -30,48 +30,57 @@ if (isset($_POST['submit']))
 			$error .= "Prenom vide \n";
 		}
 		else{
-            $nom = stripslashes($_POST["nom"]);
-            $prenom = stripslashes($_POST["prenom"]);
-            $loginuser = stripslashes($_POST["email"]);
-            $loginpassword = stripslashes($_POST["password"]);
-            $confirmpassword = stripslashes($_POST["confirmPassword"]);
+            $nom = $_POST["nom"];
+            $prenom = $_POST["prenom"];
+            $loginuser = $_POST["email");
+            $loginpassword = $_POST["password"];
+            $confirmpassword = $_POST["confirmPassword"];
 
             if($loginpassword == $confirmpassword)
             {
 
-            $servername = "localhost";
-            $username = "root";
-            $password = "admin123";
-            $dbname = "CE2";
+	            $servername = "localhost";
+	            $username = "root";
+	            $password = "admin123";
+	            $dbname = "CE2";
+	            try
+	            {
+					$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+			    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            // Check connection
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+			    	$preparedStatement = "SELECT * FROM Users WHERE Password=':pass' AND Username=':user'";
+			    	$stmt = $conn->prepare($preparedStatement);
+			    	$stmt->execute(array(':pass'=>$loginpassword));
+	    			$rows = $stmt->Fetch();
+	    			if(is_null($row))
+	    			{
 
-            $sql = "INSERT INTO Users (Prenom, Nom, Username, Password) VALUES ('$prenom', '$nom', '$loginuser', '$loginpassword')";
-
-            if (mysqli_query($conn, $sql)) {
-                echo "New record created successfully";
-		$expire = 365*24*3600;
-		setcookie("nomUsager",$nom,time()+$expire);
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
-
-            mysqli_close($conn);
-            header('Location: ' . 'profile.php', true, $statusCode);
-			die();
-        }
-        else
-        {
-        	$error .= "les mots de passe ne correspondent pas \n";
-        }
+				    	$preparedStatement = "INSERT INTO `Users`  (`Nom`,`Prenom`,`Email`,`Password`) VALUES (?,?,?,PASSWORD(?)";
+				    	$stmt = $conn->prepare($preparedStatement);
+				    	$stmt->execute(array($nom,$prenom,$loginuser,$loginpassword));
+				    	$conn=null;
+						$expire = 365*24*3600;
+						setcookie("nomUsager",$nom,time()+$expire);
+			            
+			            header('Location: ' . 'profile.php', true, $statusCode);
+						die();
+					}
+					else
+					{
+						$error = "un utilisateur usilise deja cet email";
+					}
+			 	catch(PDOException $e) 
+			 	{
+					$error = $e->getMessage();
+				} 
+	        }
+	        else
+	        {
+	        	$error .= "les mots de passe ne correspondent pas \n";
+	        }
+    	}
     }
-    }
-		?>
+?>
 		<section>
 		<div class="container outer-panel background-panel">
 			<div class="col-md-10 col-md-offset-1 login-panel">
