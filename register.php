@@ -78,7 +78,7 @@ if (isset($_POST['submit']))
     }
 		?>
 		<section>
-		<div class="container outer-panel">
+		<div class="container outer-panel background-panel">
 			<div class="col-md-10 col-md-offset-1 login-panel">
 			<div class="col-md-10 col-md-offset-2 inner-panel">
 			<form action="register.php" method="POST">
@@ -146,7 +146,7 @@ if (isset($_POST['submit']))
 				</div>
 
 				<div class="col-md-12">
-					<input type="submit" name="submit" value="S'inscrire" class="login-submit col-md-12">
+					<input type="submit" name="submit" value="Inscrire" class="big-buttons col-md-12">
 				</div>
 				</form>
 			</div>
