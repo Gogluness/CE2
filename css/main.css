@@ -2624,10 +2624,9 @@ h2.title {
   font-family: 'Oxygen', sans-serif;
   display:block;
 }
-.login-input
+.l-input
 {
       border: 5px solid white;
-      border-left: 0px; 
     -webkit-box-shadow: 
       inset 0 0 8px  rgba(0,0,0,0.1),
             0 0 16px rgba(0,0,0,0.1); 
@@ -2645,7 +2644,16 @@ h2.title {
   outline: none;
   font-weight: 600;
 }
-.login-input-label
+.l-input.with-label
+{
+    border-left: 0px;
+}
+.l-input.dark-input
+{
+  border: 5px solid gray;
+  background: rgba(200,200,200,0.5);
+}
+.l-input-label
 {
       border: 5px solid white;
       border-right: 0px; 
@@ -2665,6 +2673,20 @@ h2.title {
   font-family: 'Oxygen', sans-serif;
   outline: none;
   font-weight: 600;
+}
+.l-error
+{
+  background-color:rgba(255,0,0,0.1);
+}
+
+.l-area
+{
+  height: inherit;
+}
+
+.l-area-container
+{
+  height: 10em;
 }
 .input-inlines
 {
