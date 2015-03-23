@@ -1,11 +1,14 @@
 <?php
+	include "db_connect.php"
+?>
+<?php
 	include "objects/Produit.php";
 
 	$IDProduit = @$_GET["id"];
 
-	$link = mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
+	$link = mysql_connect($servername,$username,$password) or die("Impossible de se connecter à la base de données");
 	mysql_set_charset('utf8',$link);
-	mysql_select_db('CE2') or die("Impossible de lire les informations de la base de données");
+	mysql_select_db($dbname) or die("Impossible de lire les informations de la base de données");
 
 	$queryObtenirProduit = "SELECT Produit.ID, Produit.Nom, Produit.PrixVente, Produit.ImgPath, Produit.Description, Produit.NomCompagnie, Produit.Quantite, Description,
 				   Modele.Grandeur, Modele.Vent, Modele.Tissus,Modele.Armature, Modele.Emballage, Modele.Cordes, Modele.Poids 

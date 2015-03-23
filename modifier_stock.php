@@ -2,6 +2,9 @@
 include "header.php" // Includes Login Script
 ?>
 <?php
+	include "db_connect.php"
+?>
+<?php
 if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
 {
    echo "vous n'etes pas admin";
@@ -10,10 +13,6 @@ else
 {  
 ?>
 <?php
-	$sername = "localhost";
-	$dbname = "CE2";
-	$username = "root";
-	$password = "admin123";
 	$dir = "NEW/";
 
 	$formID = $_POST['formID'];

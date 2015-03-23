@@ -31,6 +31,7 @@ fclose($file);
 <script>
     CKEDITOR.replace( 'editor1' );
 </script>
+<?php echo("test"); ?>
 
 	<div class="col-md-12">
 		<input type="submit" name="submit" value="Sauvegarder" class="big-buttons col-md-12">

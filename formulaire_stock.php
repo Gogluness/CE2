@@ -2,6 +2,9 @@
 include "header.php" // Includes Login Script
 ?>
 <?php
+	include "db_connect.php"
+?>
+<?php
 if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
 {
    echo "vous n'etes pas admin";
@@ -35,10 +38,7 @@ function code($err_code)
 
 function GetModele($Modele)
 {
-	$sername = "localhost";
-	$dbname = "CE2";
-	$username = "root";
-	$password = "admin123";
+	include "db_connect.php";
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $preparedStatement = "SELECT ID, NomModele FROM Modele";
@@ -68,10 +68,6 @@ function GetModele($Modele)
 	{
 		$ID = $_GET["ID"];
 	}
-	$sername = "localhost";
-	$dbname = "CE2";
-	$username = "root";
-	$password = "admin123";
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $preparedStatement = "SELECT * FROM Produit WHERE ID = :ID";

@@ -1,5 +1,8 @@
 <?php include "header.php" // Includes Login Script ?>
 <?php
+	include "db_connect.php"
+?>
+<?php
 if(isset($_SESSION['login_user']))
 {
    header('Location: ' . 'profile.php', true, $statusCode);
@@ -36,11 +39,6 @@ if (isset($_POST['submit']))
 
             if($loginpassword == $confirmpassword)
             {
-
-	            $servername = "localhost";
-	            $username = "root";
-	            $password = "admin123";
-	            $dbname = "CE2";
 	            try
 	            {
 					$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

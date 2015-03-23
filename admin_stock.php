@@ -2,6 +2,9 @@
 include "header.php" // Includes Login Script
 ?>
 <?php
+    include "db_connect.php"
+?>
+<?php
 if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
 {
    echo "vous n'etes pas admin";
@@ -29,11 +32,6 @@ if(isset($_POST['submit']))
     <th>Quantite en stock</th>
     </tr>
   <?php
-
-$servername = "localhost";
-$username = "root";
-$password = "admin123";
-$dbname = "CE2";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
