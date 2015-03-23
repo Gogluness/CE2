@@ -33,9 +33,14 @@ if (isset($_POST['submit']))
 		else{
             $nom = $_POST["nom"];
             $prenom = $_POST["prenom"];
-            $loginuser = $_POST["email"];
+            $loginuser = $_POST["username"];
+	    $email = $_POST["email"];
             $loginpassword = $_POST["password"];
             $confirmpassword = $_POST["confirmPassword"];
+	    $adresse = $_POST["adresse"];
+	    $codePostal = $_POST["codePostal"];
+	    $ville = $_POST["ville"];
+
 
             if($loginpassword == $confirmpassword)
             {
@@ -51,25 +56,25 @@ if (isset($_POST['submit']))
 	    			if(!is_null($row))
 	    			{
 
-				    	$preparedStatement = "INSERT INTO `Users`  (`Nom`,`Prenom`,`Email`,`Password`) VALUES (?,?,?,?)";
+				    	$preparedStatement = "INSERT INTO Users (`Nom`, `Prenom`, `Email`, `Password`, `Adresse`, `CodePostal`, `Ville`, `Username`) VALUES (?,?,?,?,?,?,?,?)";
 				    	$stmt = $conn->prepare($preparedStatement);
-				    	$stmt->execute(array($nom,$prenom,$loginuser,MD5($loginpassword)));
+				    	$stmt->execute(array($nom,$prenom,$email,MD5($loginpassword),$adresse, $codePostal, $ville, $loginuser));
 				    	$conn=null;
-						$expire = 365*24*3600;
-						setcookie("nomUsager",$nom,time()+$expire);
+					$expire = 365*24*3600;
+					setcookie("nomUsager",$nom,time()+$expire);
 			            
-			            header('Location: ' . 'profile.php', true, $statusCode);
-						die();
-					}
-					else
-					{
-						$error = "un utilisateur usilise deja cet email";
-					}
+			            	header('Location: ' . 'profile.php', true, $statusCode);
+					die();
 				}
-			 	catch(PDOException $e) 
-			 	{
-					$error = $e->getMessage();
-				} 
+				else
+				{
+					$error = "un utilisateur usilise deja cet email";
+				}
+			}
+		 	catch(PDOException $e) 
+		 	{
+				$error = $e->getMessage();
+			} 
 	        }
 	        else
 	        {
@@ -90,6 +95,9 @@ if (isset($_POST['submit']))
 
 				<?php } ?>
 				<div class="col-md-12">
+					<h3>Déjà inscrit? <a href="login.php">Connectez-vous!</a></h3>
+				</div>
+				<div class="col-md-12">
 					<h3>Inscription</h3>
 				</div>
 
@@ -107,6 +115,30 @@ if (isset($_POST['submit']))
 				</div>
 
 				<div class="col-md-12">
+				<div class="l-input-label col-md-3">Adresse</div>
+					<input type="text" name="adresse" class="col-md-9 l-input with-label"
+					placeholder="ex: 1010 rue de gauche">
+				</div>
+
+				<div class="col-md-6">
+				<div class="l-input-label col-md-3">ville</div>
+					<input type="text" name="ville" class="col-md-9 l-input with-label"
+					placeholder="ex: Québec">
+				</div>
+
+				<div class="col-md-6">
+				<div class="l-input-label col-md-5">Code postal</div>
+					<input type="text" name="codePostal" class="col-md-7 l-input with-label"
+					placeholder="ex: A1A 1A1">
+				</div>
+
+				<div class="col-md-12">
+				<div class="l-input-label col-md-3">Nom d'utilisateur</div>
+					<input type="text" name="username" class="col-md-9 l-input with-label"
+					placeholder="ex: jeandit">
+				</div>
+
+				<div class="col-md-12">
 				<div class="l-input-label col-md-3">Email</div>
 					<input type="email" name="email" class="col-md-9 l-input with-label"
 					placeholder="ex: mon@email.com">
@@ -120,7 +152,7 @@ if (isset($_POST['submit']))
 				</div>
 
 				<div class="col-md-12">
-					<input type="submit" name="submit" value="Inscrire" class="big-buttons col-md-12">
+					<input type="submit" name="submit" value="S'inscrire" class="big-buttons col-md-12">
 				</div>
 				</form>
 			</div>

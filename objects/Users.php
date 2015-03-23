@@ -1,10 +1,12 @@
 <?php
 class Users
 {
-	$Email
-	$Nom
-	$Password
-	$Prenom
-	$Username
+	public $Email;
+	public $Nom;
+	public $Prenom;
+	public $Username;
+	public $Adresse;
+	public $CodePostal;
+	public $Ville;
 }
 ?>

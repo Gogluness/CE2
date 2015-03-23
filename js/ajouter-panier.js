@@ -16,7 +16,7 @@ $(".add-to-cart").click(function() {
 		"L'erreur suivante est survenue: "+
 		textStatus, errorThrown
 	    );
-    });
+    	});
 });
 
 $(".overlay-top").click(function() {

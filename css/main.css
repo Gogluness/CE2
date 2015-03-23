@@ -202,7 +202,7 @@ a#scrollUp i{
 }
 
 
-.shop-menu ul li a {
+.shop-menu ul li a, .shop-menu ul li span {
   background: #FFFFFF;
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -212,7 +212,14 @@ a#scrollUp i{
   padding-right: 0;
   margin-top: 10px;
 }
+.shop-menu ul li span{
+  display: block;
+}
 
+.shop-menu ul li span a{
+  color: #428BCA;
+  font-weight: 600;
+}
 
 .shop-menu ul li a i{
 	margin-right:3px;
@@ -676,6 +683,11 @@ ul.sub-menu {
   padding-bottom: 20px;
   padding-top: 15px;
 }
+
+.left-sidebar{
+  margin-bottom: 10em;
+}
+
 .left-sidebar h2, .brands_products h2 {
   color: #3A5C83;
   font-family: 'Roboto', sans-serif;
@@ -2770,3 +2782,9 @@ div.overlay-content{
 .add-to-cart:focus{
 	color:#FFFFFF;
 }
+
+span.cart-error{
+  font-size:18px;
+  color:red;
+}
+

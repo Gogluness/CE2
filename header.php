@@ -43,16 +43,15 @@ session_start();
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<?php
-									if(isset($_COOKIE["nomUsager"]))
+									if(isset($_SESSION['login_user']))
+									{
+										echo "<li><span>Bonjour <a href='profile.php'>".$_SESSION['login_user']."</a></span></li>";
+									}
+									elseif(isset($_COOKIE["nomUsager"]))
 									{
 										echo "<li><a id='header-nom-usager'>Bonjour ".$_COOKIE['nomUsager']."</a></li>";
 									}
-									elseif(isset($_SESSION['login_user']))
-									{
-										echo "<li>Bonjour <a href='profile.php'>".$_SESSION['login_user']."</a></li>";
-									}
 								?>
-
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Panier</a></li>
 								<?php
 									if(isset($_SESSION['login_user']) && $_SESSION['login_user'] == "my@admin.com")
