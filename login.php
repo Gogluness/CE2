@@ -1,21 +1,20 @@
 <?php include "header.php" // Includes Login Script ?>
 <?php
-if(isset($_SESSION['login_user']))
-{
-   header('Location: ' . 'profile.php', true, $statusCode);
-   die();
-}	
+	if(isset($_SESSION['login_user']))
+	{
+		header('Location: ' . 'profile.php', true, $statusCode);
+		die();
+	}
 ?>
-
 <?php
 	$error=''; // Variable To Store Error Message
-	if (isset($_POST['submit'])) 
+	if (isset($_POST['submit']))
 	{
 		if (empty($_POST['email']))
 		{
 			$error .= "Email vide \n";
 		}
-		elseif (empty($_POST['password'])) 
+		elseif (empty($_POST['password']))
 		{
 			$error .= "Mot de passe vide \n";
 		}
@@ -23,71 +22,64 @@ if(isset($_SESSION['login_user']))
 		{
 			$loginpassword = MD5($_POST['password']);
 			$loginuser = $_POST['email'];
-
 			$servername = "localhost";
-            $username = "root";
-            $password = "admin123";
-            $dbname = "CE2";
-            try
-            {
+			$username = "root";
+			$password = "admin123";
+			$dbname = "CE2";
+			try
+			{
 				$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		    	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		    	$preparedStatement = "SELECT * FROM Users WHERE Password=':pass' AND Email=':user'";
-		    	$stmt = $conn->prepare($preparedStatement);
-		    	$stmt->execute(array(':pass'=>$loginpassword,':user'=>$loginuser));
-    			$row = $stmt->Fetch();
-				if (!is_null($row)) 
+				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				$preparedStatement = "SELECT * FROM Users WHERE Password=':pass' AND (Email=':user' OR Username=':user')";
+				$stmt = $conn->prepare($preparedStatement);
+				$stmt->execute(array(':pass'=>$loginpassword,':user'=>$loginuser));
+				$row = $stmt->Fetch();
+				if (!is_null($row))
 				{
-			        $_SESSION['login_user'] = $loginuser;
+					$_SESSION['login_user'] = $loginuser;
 					$expire = 365*24*3600;
 					setcookie("nomUsager",$row["Email"],time()+$expire);
-	                header('Location: ' . 'profile.php', true, $statusCode);
+					header('Location: ' . 'profile.php', true, $statusCode);
 					die();
-			    }
+				}
 				else {
-				    $error .= "L'email et le mot de passe ne correspondent pas \n";
+					$error .= "L'email et le mot de passe ne correspondent pas \n";
 				}
 			}
-		 	catch(PDOException $e) 
-		 	{
+			catch(PDOException $e)
+			{
 				$error = $e->getMessage();
-			} 
+			}
 		}
 	}
-		?>
-		<section>
-		<div class="container outer-panel background-panel">
-			<div class="col-md-10 col-md-offset-1 login-panel">
+?>
+<section>
+	<div class="container outer-panel background-panel">
+		<div class="col-md-10 col-md-offset-1 login-panel">
 			<div class="col-md-10 col-md-offset-2 inner-panel">
-			<form action="login.php" method="POST">
-			<?php if(isset($error) AND !empty($error)) {?>
-				<div class="col-md-12 l-error">
-				<p><?php echo($error); ?><p>
-				</div>
-
-				<?php } ?>
-				<div class="col-md-12">
-					<h3>Identification</h3>
-				</div>
-
-				<div class="col-md-12">
-				<div class="l-input-label col-md-3">Email</div>
-					<input type="email" name="email" class="col-md-9 l-input with-label"
-					placeholder="ex: mon@email.com">
-				</div>
-
-				<div class="col-md-12">
-				<div class="l-input-label col-md-3">Mot de passe</div>
-					<input type="password" name="password" class="col-md-9 l-input with-label">
-				</div>
-
-				<div class="col-md-12">
-					<input type="submit" name="submit" value="Identifier" class="big-buttons col-md-12">
-				</div>
+				<form action="login.php" method="POST">
+					<?php if(isset($error) AND !empty($error)) {?>
+						<div class="col-md-12 l-error">
+							<p><?php echo($error); ?><p>
+						</div>
+					<?php } ?>
+					<div class="col-md-12">
+						<h3>Identification</h3>
+					</div>
+					<div class="col-md-12">
+						<div class="l-input-label col-md-3">Email</div>
+						<input type="text" name="email" class="col-md-9 l-input with-label" placeholder="ex: mon@email.com">
+					</div>
+					<div class="col-md-12">
+						<div class="l-input-label col-md-3">Mot de passe</div>
+						<input type="password" name="password" class="col-md-9 l-input with-label">
+					</div>
+					<div class="col-md-12">
+						<input type="submit" name="submit" value="Identifier" class="big-buttons col-md-12">
+					</div>
 				</form>
 			</div>
-			</div>
-			</div>
-			</section>
-
+		</div>
+	</div>
+</section>
 <?php include "footer.php" ?>
