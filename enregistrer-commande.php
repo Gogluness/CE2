@@ -39,7 +39,11 @@ foreach ($panier as $IDProduit => $produitPanier)
 				     VALUES ($noCommande, $IDProduit, $quantite);";
 
 	mysql_query($queryInsertProduitPanier);	
+
+	$queryUpdateQuantite = "UPDATE Produit SET Quantite = (Quantite - $quantite) WHERE ID = $IDProduit"; 
+	mysql_query($queryUpdateQuantite);	
 }
 
 mysql_close();
 ?>
+

@@ -2753,3 +2753,9 @@ div.overlay-content{
 .add-to-cart:focus{
 	color:#FFFFFF;
 }
+
+span.cart-error{
+  font-size:18px;
+  color:red;
+}
+

@@ -3,6 +3,7 @@
 <?php
 	$panier = array();
 	$prixTotal = 0;
+	$erreur = "";
 
 	if(isset($_SESSION['panier']))
 	{
@@ -19,6 +20,11 @@
 			$executionRequeteProduit = mysql_query($queryGetProduit);
 			$produitRetour = mysql_fetch_array($executionRequeteProduit);
 
+			if($produitPanier['Quantite'] > $produitRetour["Quantite"])
+			{
+				$erreur .= "<span class='cart-error'>La quantité du produit ".$produitRetour['Nom']." est plus élevé que la quantité en stock.</span></br>";
+			}
+
 			$lignePanier = new LignePanier();
 			$lignePanier->Nom = $produitRetour["Nom"];
 			$lignePanier->Prix = $produitRetour["PrixVente"];
@@ -30,6 +36,12 @@
 		}
 
 		mysql_close();
+
+		if(isset($_POST['submit']) && $erreur == "")
+		{
+			header('Location: ' . 'valider-commande.php', true);
+			die();
+		}
 	}
 ?>
 
@@ -41,6 +53,12 @@
 				  <li class="active">Panier</li>
 				</ol>
 			</div>
+			<?php
+				if(isset($_POST['submit']))
+				{
+					echo $erreur;
+				}
+			?>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -144,9 +162,8 @@
 								$</span>
 							</li>
 						</ul>
-							<form name="form-valide-commande" action="valider-commande.php">
-								<a class="btn btn-default update pull-right check_out" onclick="document.forms['form-valide-commande'].submit();">Valider la commande</a>
-								<input type="hidden" name="stringQuantity" id="stringQuantity"/>
+							<form name="form-valide-commande" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+								<input class="btn btn-default update pull-right check_out" type="submit" name="submit" value="Valider la commande"/>
 							</form>
 							<a class="btn btn-default update pull-right" href="shop.php">Continuer le magasinage</a>
 					</div>

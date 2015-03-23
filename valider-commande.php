@@ -36,9 +36,6 @@
 
 	if(isset($_SESSION['panier']))
 	{
-		$listeQuantite = $_REQUEST["stringQuantity"];
-		$tableauQuantite = explode("&",$listeQuantite);
-
 		include "objects/LignePanier.php";
 		$link = mysql_connect('localhost','root','admin123') or die("Impossible de se connecter à la base de données");
 		mysql_set_charset('utf8',$link);
