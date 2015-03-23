@@ -21,15 +21,15 @@ if(isset($_SESSION['login_user']))
 		else
 		{
 			$servername = "localhost";
-            $username = "root";
-            $password = "admin123";
-            $dbname = "CE2";
+            		$username = "root";
+            		$password = "admin123";
+            		$dbname = "CE2";
 			// Define $username and $password
 			$loginuser= stripslashes($_POST['email']);
 			$loginpassword=stripslashes($_POST['password']);
 			// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 			// Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
+    	    $conn = mysqli_connect($servername, $username, $password, $dbname);
             // Check connection
             if (!$conn) {
             	$error.="not connecting\n";
@@ -37,7 +37,7 @@ if(isset($_SESSION['login_user']))
             }
 			// Selecting Database
 			// SQL query to fetch information of registerd users and finds user match.
-			$sql = "select * from Users where Password='$loginpassword' AND Username='$loginuser'";
+			$sql = "select * from Users where Password='$loginpassword' AND (Username='$loginuser' OR Email='$loginuser')";
 			$result = $conn->query($sql);
 
 			if ($result->num_rows > 0) {
