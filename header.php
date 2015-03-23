@@ -43,13 +43,13 @@ session_start();
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<?php
-									if(isset($_COOKIE["nomUsager"]))
-									{
-										echo "<li><a id='header-nom-usager'>Bonjour ".$_COOKIE['nomUsager']."</a></li>";
-									}
-									elseif(isset($_SESSION['login_user']))
+									if(isset($_SESSION['login_user']))
 									{
 										echo "<li><span>Bonjour <a href='profile.php'>".$_SESSION['login_user']."</a></span></li>";
+									}
+									elseif(isset($_COOKIE["nomUsager"]))
+									{
+										echo "<li><a id='header-nom-usager'>Bonjour ".$_COOKIE['nomUsager']."</a></li>";
 									}
 								?>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Panier</a></li>

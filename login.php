@@ -38,7 +38,7 @@
 				{
 					$_SESSION['login_user'] = $loginuser;
 					$expire = 365*24*3600;
-					setcookie("nomUsager",$row["Email"],time()+$expire);
+					setcookie("nomUsager",$loginuser,time()+$expire);
 					header('Location: ' . 'profile.php', true, $statusCode);
 					die();
 				}
