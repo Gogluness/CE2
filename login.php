@@ -21,6 +21,9 @@ if(isset($_SESSION['login_user']))
 		}
 		else
 		{
+			$loginpassword = MD5($_POST['password']);
+			$loginuser = $_POST['email'];
+
 			$servername = "localhost";
             $username = "root";
             $password = "admin123";
@@ -32,8 +35,8 @@ if(isset($_SESSION['login_user']))
 		    	$preparedStatement = "SELECT * FROM Users WHERE Password=':pass' AND Email=':user'";
 		    	$stmt = $conn->prepare($preparedStatement);
 		    	$stmt->execute(array(':pass'=>$loginpassword,':user'=>$loginuser));
-    			$rows = $stmt->Fetch();
-				if (is_null($rows)) 
+    			$row = $stmt->Fetch();
+				if (!is_null($row)) 
 				{
 			        $_SESSION['login_user'] = $loginuser;
 					$expire = 365*24*3600;
@@ -44,6 +47,7 @@ if(isset($_SESSION['login_user']))
 				else {
 				    $error .= "L'email et le mot de passe ne correspondent pas \n";
 				}
+			}
 		 	catch(PDOException $e) 
 		 	{
 				$error = $e->getMessage();
@@ -86,4 +90,4 @@ if(isset($_SESSION['login_user']))
 			</div>
 			</section>
 
-<?php include "footer.php"?>
+<?php include "footer.php" ?>

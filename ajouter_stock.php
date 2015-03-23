@@ -1,7 +1,14 @@
 <?php
 include "header.php" // Includes Login Script
 ?>
-
+<?php
+if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
+{
+   echo "vous n'etes pas admin";
+}
+else
+{  
+?>
 <?php
 	$sername = "localhost";
 	$dbname = "CE2";
@@ -34,9 +41,10 @@ include "header.php" // Includes Login Script
 ?>
 <section>
 <div class="col-md-10 col-md-offset-1">
-	<a href="admin_stock" class="big-buttons">Retour</a>
+	<a href="admin_stock.php" class="big-buttons">Retour</a>
 </div>
 </section>
+<?php } ?>
 <?php
 include "footer.php"
 ?>

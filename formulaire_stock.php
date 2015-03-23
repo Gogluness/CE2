@@ -1,8 +1,13 @@
 <?php
 include "header.php" // Includes Login Script
 ?>
-
-<?PHP
+<?php
+if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
+{
+   echo "vous n'etes pas admin";
+}
+else
+{  
 
 // Fonction pour identifier le succès ou l'insuccès
 function code($err_code)
@@ -179,6 +184,7 @@ function GetModele($Modele)
 </div>
 </div>
 </section>
+<?php } ?>
 <?php
 include "footer.php"
 ?>

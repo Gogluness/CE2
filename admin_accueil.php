@@ -2,6 +2,14 @@
 include "header.php" // Includes Login Script
 ?>
 <?php
+if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
+{
+   echo "vous n'etes pas admin";
+}
+else
+{  
+?>
+<?php
 if (isset($_POST['submit']))
 {
 $file = fopen($_POST["EditorFile"], 'w');
@@ -33,7 +41,7 @@ fclose($file);
 </div>
 </section>
 
-
+<?php } ?>
 <?php
 include "footer.php" // Includes Login Script
 ?>

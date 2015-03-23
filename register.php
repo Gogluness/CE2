@@ -1,6 +1,4 @@
-<?php 
-	include "header.php" // Includes Login Script
-?>
+<?php include "header.php" // Includes Login Script ?>
 <?php
 if(isset($_SESSION['login_user']))
 {
@@ -32,7 +30,7 @@ if (isset($_POST['submit']))
 		else{
             $nom = $_POST["nom"];
             $prenom = $_POST["prenom"];
-            $loginuser = $_POST["email");
+            $loginuser = $_POST["email"];
             $loginpassword = $_POST["password"];
             $confirmpassword = $_POST["confirmPassword"];
 
@@ -51,13 +49,13 @@ if (isset($_POST['submit']))
 			    	$preparedStatement = "SELECT * FROM Users WHERE Password=':pass' AND Username=':user'";
 			    	$stmt = $conn->prepare($preparedStatement);
 			    	$stmt->execute(array(':pass'=>$loginpassword));
-	    			$rows = $stmt->Fetch();
-	    			if(is_null($row))
+	    			$row = $stmt->Fetch();
+	    			if(!is_null($row))
 	    			{
 
-				    	$preparedStatement = "INSERT INTO `Users`  (`Nom`,`Prenom`,`Email`,`Password`) VALUES (?,?,?,PASSWORD(?)";
+				    	$preparedStatement = "INSERT INTO `Users`  (`Nom`,`Prenom`,`Email`,`Password`) VALUES (?,?,?,?)";
 				    	$stmt = $conn->prepare($preparedStatement);
-				    	$stmt->execute(array($nom,$prenom,$loginuser,$loginpassword));
+				    	$stmt->execute(array($nom,$prenom,$loginuser,MD5($loginpassword)));
 				    	$conn=null;
 						$expire = 365*24*3600;
 						setcookie("nomUsager",$nom,time()+$expire);
@@ -69,6 +67,7 @@ if (isset($_POST['submit']))
 					{
 						$error = "un utilisateur usilise deja cet email";
 					}
+				}
 			 	catch(PDOException $e) 
 			 	{
 					$error = $e->getMessage();

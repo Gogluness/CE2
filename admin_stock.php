@@ -1,7 +1,14 @@
 <?php
 include "header.php" // Includes Login Script
 ?>
-
+<?php
+if(!isset($_SESSION['login_user']) && $_SESSION['login_user'] != "my@admin.com")
+{
+   echo "vous n'etes pas admin";
+}
+else
+{  
+?>
 <div class="conatiner">
 <div class="col-md-10 col-md-offset-1">
 
@@ -31,9 +38,9 @@ $dbname = "CE2";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $preparedStatement = "SELECT * FROM Produit";
+    $preparedStatement = "SELECT * FROM Produit WHERE `Nom` = :name";
     $stmt = $conn->prepare($preparedStatement);
-    $stmt->execute();
+    $stmt->execute(array(':name'=>$Search));
     $rows = $stmt->FetchAll();
 
     // set the resulting array to associative
@@ -70,7 +77,7 @@ echo "</tbody> </table>";
 </form>
 <a href="formulaire_stock.php" class="big-buttons"> Nouveau </a>
 </div>
-
+<?php } ?>
 <?php
 include "footer.php"
 ?>
