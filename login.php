@@ -33,7 +33,7 @@ if(isset($_SESSION['login_user']))
 				$stmt = $conn->prepare($preparedStatement);
 				$stmt->execute(array(':pass'=>$loginpassword,':user'=>$loginuser));
 				$row = $stmt->Fetch();
-				if (!is_null($row))
+				if (isset($row) AND !is_null($row) AND !empty($row))
 				{
 					$_SESSION['login_user'] = $loginuser;
 					$expire = 365*24*3600;
