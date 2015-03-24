@@ -113,7 +113,6 @@ if(isset($_POST['submit_pass']))
 	$newpassword = $_POST['newpassword'];
 	$confirmpass = $_POST['confirmpass'];
 	$oldpass = MD5($oldpass);
-	$oldpass = substr("$oldpass", 0, -2);
 	if($oldpass == $lpassword)
 	{
 		if(!is_null($newpassword) AND !empty($newpassword))

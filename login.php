@@ -29,19 +29,18 @@ if(isset($_SESSION['login_user']))
             {
 				$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$preparedStatement = "SELECT * FROM Users WHERE Password=':pass' AND (Email=':user' OR Username=':user')";
+				$preparedStatement = "SELECT * FROM `Users` WHERE `Password`=:pass AND (`Email`=:user OR 'Username' = :user)";
 				$stmt = $conn->prepare($preparedStatement);
 				$stmt->execute(array(':pass'=>$loginpassword,':user'=>$loginuser));
-				$row = $stmt->Fetch();
-				if (isset($row) AND !is_null($row) AND !empty($row))
-				{
+				if($row = $stmt->fetch()) {
 					$_SESSION['login_user'] = $loginuser;
 					$expire = 365*24*3600;
 					setcookie("nomUsager",$loginuser,time()+$expire);
 					header('Location: ' . 'profile.php', true, $statusCode);
 					die();
 				}
-				else {
+				else 
+				{
 					$error .= "L'email et le mot de passe ne correspondent pas \n";
 				}
 			}
