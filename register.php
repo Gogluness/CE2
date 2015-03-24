@@ -34,12 +34,12 @@ if (isset($_POST['submit']))
             $nom = $_POST["nom"];
             $prenom = $_POST["prenom"];
             $loginuser = $_POST["username"];
-	    $email = $_POST["email"];
+	    	$email = $_POST["email"];
             $loginpassword = $_POST["password"];
             $confirmpassword = $_POST["confirmPassword"];
-	    $adresse = $_POST["adresse"];
-	    $codePostal = $_POST["codePostal"];
-	    $ville = $_POST["ville"];
+		    $adresse = $_POST["adresse"];
+		    $codePostal = $_POST["codePostal"];
+		    $ville = $_POST["ville"];
 
 
             if($loginpassword == $confirmpassword)
