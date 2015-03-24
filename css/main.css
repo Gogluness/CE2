@@ -2691,6 +2691,11 @@ h2.title {
   background-color:rgba(255,0,0,0.1);
 }
 
+.l-success
+{
+  background-color:rgba(0,255,0,0.2);
+}
+
 .l-area
 {
   height: inherit;
